@@ -1,0 +1,37 @@
+DISASTER SIMULATION RELATED FILES
+==================================
+
+The following files are part of the disaster simulation functionality:
+
+CORE COMPONENTS:
+- src/components/DisasterPreparednessApp.jsx (Main simulation component)
+- src/pages/DisasterSimulation.jsx (Page wrapper)
+- src/components/DisasterSimulation.css (Styles)
+- src/utils/DisasterSoundManager.js (Sound effects)
+
+HTML FILES:
+- public/disaster-simulation.html (Standalone demo)
+- build/disaster-simulation.html (Built demo)
+
+DOCUMENTATION:
+- DISASTER_PREPAREDNESS_README.md (Documentation)
+
+DATA FILES:
+- public/disaster_dataset.json (Simulation data)
+- build/disaster_dataset.json (Built data)
+
+VIDEO ASSETS:
+- public/Videos/ (All disaster training videos)
+- build/Videos/ (Built video assets)
+
+FEATURES INCLUDED:
+- Earthquake simulation with scenarios
+- Fire drill training with time pressure
+- Flood simulation scenarios
+- Cyclone simulation scenarios
+- Landslide simulation scenarios
+- Sound effects for each disaster type
+- Progress tracking and scoring system
+- Badge/achievement system
+- Interactive animations and effects
+- Standalone HTML demo

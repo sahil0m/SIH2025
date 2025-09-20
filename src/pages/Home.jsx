@@ -169,13 +169,13 @@ function Home() {
           </Link>
         </div>
         <div className="col-12 col-md-6 col-xl-3">
-          <Link to="/leaderboard" className="text-decoration-none">
+          <Link to="/simulation" className="text-decoration-none">
             <div className="card h-100 shadow-sm hover-card">
               <div className="card-body d-flex align-items-start gap-3">
-                <i className="bi bi-trophy fs-2 text-warning"></i>
+                <i className="bi bi-controller fs-2 text-info"></i>
                 <div>
-                  <div className="fw-semibold">Gamified</div>
-                  <div className="text-muted small">Points, badges, leaderboard.</div>
+                  <div className="fw-semibold">Disaster Simulation</div>
+                  <div className="text-muted small">Interactive VR-style training.</div>
                 </div>
               </div>
             </div>

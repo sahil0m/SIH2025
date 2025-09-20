@@ -12,6 +12,7 @@ import Alerts from './pages/Alerts';
 import Drills from './pages/Drills';
 import Leaderboard from './pages/Leaderboard';
 import Emergency from './pages/Emergency';
+import DisasterSimulation from './pages/DisasterSimulation';
 import Admin from './pages/Admin';
 import Teacher from './pages/Teacher';
 import Auth from './pages/Auth';
@@ -57,6 +58,7 @@ function AppRoutes() {
           <Route path="/learn" element={<MotionPage><AllowRoles roles={["student","teacher"]}><Learn /></AllowRoles></MotionPage>} />
           <Route path="/alerts" element={<MotionPage><AllowRoles roles={["student","teacher","admin"]}><Alerts /></AllowRoles></MotionPage>} />
           <Route path="/drills" element={<MotionPage><AllowRoles roles={["student","teacher"]}><Drills /></AllowRoles></MotionPage>} />
+          <Route path="/simulation" element={<MotionPage><AllowRoles roles={["student","teacher"]}><DisasterSimulation /></AllowRoles></MotionPage>} />
           <Route path="/leaderboard" element={<MotionPage><AllowRoles roles={["student"]}><Leaderboard /></AllowRoles></MotionPage>} />
           <Route path="/emergency" element={<MotionPage><AllowRoles roles={["student","teacher"]}><Emergency /></AllowRoles></MotionPage>} />
           <Route path="/admin" element={<MotionPage><RoleGuard role="admin"><Admin /></RoleGuard></MotionPage>} />

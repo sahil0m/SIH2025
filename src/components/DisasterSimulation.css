@@ -1,0 +1,2764 @@
+/* Enhanced Disaster Simulation Styles with Child-Friendly Features */
+
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* CSS Custom Properties for Theme Support */
+:root {
+  --sim-bg-primary: #f0f9ff;
+  --sim-bg-secondary: #e0f2fe;
+  --sim-bg-tertiary: #bae6fd;
+  --sim-card-bg: #ffffff;
+  --sim-card-border: #e5e7eb;
+  --sim-text-primary: #1f2937;
+  --sim-text-secondary: #6b7280;
+  --sim-shadow: rgba(0, 0, 0, 0.1);
+  --sim-shadow-hover: rgba(0, 0, 0, 0.15);
+  --sim-header-bg: #1f2937;
+  --sim-header-text: #ffffff;
+  --sim-game-bg: #f9fafb;
+  --sim-button-bg: #3b82f6;
+  --sim-button-hover: #2563eb;
+  --sim-input-bg: #ffffff;
+  --sim-input-border: #d1d5db;
+  --sim-success-bg: #10b981;
+  --sim-error-bg: #ef4444;
+  --sim-warning-bg: #f59e0b;
+}
+
+/* Dark Mode Variables */
+[data-bs-theme="dark"] {
+  --sim-bg-primary: #0f172a;
+  --sim-bg-secondary: #1e293b;
+  --sim-bg-tertiary: #334155;
+  --sim-card-bg: #1e293b;
+  --sim-card-border: #475569;
+  --sim-text-primary: #f1f5f9;
+  --sim-text-secondary: #94a3b8;
+  --sim-shadow: rgba(0, 0, 0, 0.3);
+  --sim-shadow-hover: rgba(0, 0, 0, 0.4);
+  --sim-header-bg: #0f172a;
+  --sim-header-text: #f1f5f9;
+  --sim-game-bg: #0f172a;
+  --sim-button-bg: #3b82f6;
+  --sim-button-hover: #2563eb;
+  --sim-input-bg: #334155;
+  --sim-input-border: #64748b;
+  --sim-success-bg: #10b981;
+  --sim-error-bg: #ef4444;
+  --sim-warning-bg: #f59e0b;
+}
+
+/* Dark Mode Background Overrides */
+[data-bs-theme="dark"] .disaster-simulation {
+  background: linear-gradient(135deg, var(--sim-bg-primary) 0%, var(--sim-bg-secondary) 50%, var(--sim-bg-tertiary) 100%) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .card {
+  background-color: var(--sim-card-bg) !important;
+  border-color: var(--sim-card-border) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .game-card {
+  background-color: var(--sim-card-bg) !important;
+  border-color: var(--sim-card-border) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .game-area {
+  background: linear-gradient(to bottom, var(--sim-game-bg) 0%, var(--sim-bg-secondary) 100%) !important;
+}
+
+/* Override any light blue backgrounds to dark */
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #1e40af"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #3b82f6"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #0ea5e9"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #8b5cf6"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #059669"] {
+  background: linear-gradient(135deg, var(--sim-card-bg) 0%, var(--sim-bg-secondary) 100%) !important;
+}
+
+/* Override any solid light backgrounds */
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #1e40af"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #3b82f6"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #0ea5e9"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #8b5cf6"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #059669"] {
+  background-color: var(--sim-card-bg) !important;
+}
+
+/* Dark Mode Text Visibility Fixes */
+[data-bs-theme="dark"] .disaster-simulation h1,
+[data-bs-theme="dark"] .disaster-simulation h2,
+[data-bs-theme="dark"] .disaster-simulation h3,
+[data-bs-theme="dark"] .disaster-simulation h4,
+[data-bs-theme="dark"] .disaster-simulation h5,
+[data-bs-theme="dark"] .disaster-simulation h6 {
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation p,
+[data-bs-theme="dark"] .disaster-simulation li,
+[data-bs-theme="dark"] .disaster-simulation span,
+[data-bs-theme="dark"] .disaster-simulation div {
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .text-muted {
+  color: var(--sim-text-secondary) !important;
+}
+
+/* Dark Mode Card Text */
+[data-bs-theme="dark"] .card-title,
+[data-bs-theme="dark"] .card-text {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Dark Mode Alert Styling */
+[data-bs-theme="dark"] .alert-info {
+  background-color: rgba(13, 202, 240, 0.1) !important;
+  border-color: rgba(13, 202, 240, 0.3) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .alert-warning {
+  background-color: rgba(255, 193, 7, 0.1) !important;
+  border-color: rgba(255, 193, 7, 0.3) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Fix hardcoded colors in DisasterPreparednessApp */
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #92400e"] {
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #0369a1"] {
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #1f2937"] {
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #4b5563"] {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Force all text to be visible in dark mode */
+[data-bs-theme="dark"] .disaster-simulation * {
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation h1,
+[data-bs-theme="dark"] .disaster-simulation h2,
+[data-bs-theme="dark"] .disaster-simulation h3,
+[data-bs-theme="dark"] .disaster-simulation h4,
+[data-bs-theme="dark"] .disaster-simulation h5,
+[data-bs-theme="dark"] .disaster-simulation h6,
+[data-bs-theme="dark"] .disaster-simulation p,
+[data-bs-theme="dark"] .disaster-simulation span,
+[data-bs-theme="dark"] .disaster-simulation div,
+[data-bs-theme="dark"] .disaster-simulation li {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Override any light text colors */
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #ffffff"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #f1f5f9"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #e2e8f0"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #cbd5e1"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #94a3b8"] {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Additional dark mode background fixes */
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #f8fafc"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #e2e8f0"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #ffffff"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #f9fafb"] {
+  background-color: var(--sim-card-bg) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(to bottom, #f8fafc"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(to bottom, #e2e8f0"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(to bottom, #ffffff"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(to bottom, #f9fafb"] {
+  background: linear-gradient(to bottom, var(--sim-game-bg) 0%, var(--sim-bg-secondary) 100%) !important;
+}
+
+/* Override any remaining light blue or light colored elements */
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #fef3c7"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #fde68a"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #f0f9ff"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #e0f2fe"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #bae6fd"] {
+  background: linear-gradient(135deg, var(--sim-card-bg) 0%, var(--sim-bg-secondary) 100%) !important;
+}
+
+/* Force all light backgrounds to be dark in dark mode */
+[data-bs-theme="dark"] .disaster-simulation * {
+  background-color: transparent !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .card,
+[data-bs-theme="dark"] .disaster-simulation .game-card,
+[data-bs-theme="dark"] .disaster-simulation [class*="card"] {
+  background-color: var(--sim-card-bg) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation [style*="background"] {
+  background: var(--sim-card-bg) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation [style*="background-color"] {
+  background-color: var(--sim-card-bg) !important;
+}
+
+/* Override any element with light blue or light colors */
+[data-bs-theme="dark"] .disaster-simulation div[style*="background"],
+[data-bs-theme="dark"] .disaster-simulation section[style*="background"],
+[data-bs-theme="dark"] .disaster-simulation article[style*="background"] {
+  background: var(--sim-card-bg) !important;
+}
+
+/* Specific overrides for common light colors */
+[data-bs-theme="dark"] .disaster-simulation [style*="#1e40af"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#3b82f6"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#0ea5e9"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#8b5cf6"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#059669"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#f0f9ff"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#e0f2fe"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#bae6fd"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#ffffff"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#f8fafc"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#e2e8f0"],
+[data-bs-theme="dark"] .disaster-simulation [style*="#f9fafb"] {
+  background: var(--sim-card-bg) !important;
+  background-color: var(--sim-card-bg) !important;
+}
+
+/* Training Section Specific Fixes */
+[data-bs-theme="dark"] .disaster-simulation .training-section,
+[data-bs-theme="dark"] .disaster-simulation .training-panel,
+[data-bs-theme="dark"] .disaster-simulation .earthquake-training,
+[data-bs-theme="dark"] .disaster-simulation .fire-training {
+  background-color: var(--sim-card-bg) !important;
+  border-color: var(--sim-card-border) !important;
+}
+
+/* Training Button Fixes */
+[data-bs-theme="dark"] .disaster-simulation .training-button,
+[data-bs-theme="dark"] .disaster-simulation .option-button,
+[data-bs-theme="dark"] .disaster-simulation .start-button,
+[data-bs-theme="dark"] .disaster-simulation button {
+  background-color: var(--sim-card-bg) !important;
+  border-color: var(--sim-card-border) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .training-button:hover,
+[data-bs-theme="dark"] .disaster-simulation .option-button:hover,
+[data-bs-theme="dark"] .disaster-simulation .start-button:hover,
+[data-bs-theme="dark"] .disaster-simulation button:hover {
+  background-color: var(--sim-bg-secondary) !important;
+  border-color: var(--sim-button-bg) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Override any remaining light backgrounds in training sections */
+[data-bs-theme="dark"] .disaster-simulation [class*="training"],
+[data-bs-theme="dark"] .disaster-simulation [class*="earthquake"],
+[data-bs-theme="dark"] .disaster-simulation [class*="fire"],
+[data-bs-theme="dark"] .disaster-simulation [class*="safety"] {
+  background-color: var(--sim-card-bg) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Force all text in training sections to be visible */
+[data-bs-theme="dark"] .disaster-simulation [class*="training"] *,
+[data-bs-theme="dark"] .disaster-simulation [class*="earthquake"] *,
+[data-bs-theme="dark"] .disaster-simulation [class*="fire"] *,
+[data-bs-theme="dark"] .disaster-simulation [class*="safety"] * {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Override any gradient backgrounds in training sections */
+[data-bs-theme="dark"] .disaster-simulation [class*="training"][style*="background"],
+[data-bs-theme="dark"] .disaster-simulation [class*="earthquake"][style*="background"],
+[data-bs-theme="dark"] .disaster-simulation [class*="fire"][style*="background"],
+[data-bs-theme="dark"] .disaster-simulation [class*="safety"][style*="background"] {
+  background: var(--sim-card-bg) !important;
+  background-color: var(--sim-card-bg) !important;
+}
+
+/* Comprehensive override for all elements with any background */
+[data-bs-theme="dark"] .disaster-simulation [style*="background"] {
+  background: var(--sim-card-bg) !important;
+  background-color: var(--sim-card-bg) !important;
+  background-image: none !important;
+}
+
+/* Override any remaining light colored elements */
+[data-bs-theme="dark"] .disaster-simulation [style*="background-color: #"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: #"] {
+  background: var(--sim-card-bg) !important;
+  background-color: var(--sim-card-bg) !important;
+}
+
+/* Force all containers and wrappers to have dark backgrounds */
+[data-bs-theme="dark"] .disaster-simulation .container,
+[data-bs-theme="dark"] .disaster-simulation .row,
+[data-bs-theme="dark"] .disaster-simulation .col,
+[data-bs-theme="dark"] .disaster-simulation .col-md,
+[data-bs-theme="dark"] .disaster-simulation .col-lg,
+[data-bs-theme="dark"] .disaster-simulation .col-xl {
+  background-color: transparent !important;
+}
+
+/* Override any remaining light text that might be invisible */
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #000"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #333"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #666"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #999"] {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Training Option Button Specific Fixes */
+[data-bs-theme="dark"] .disaster-simulation .challenge-button,
+[data-bs-theme="dark"] .disaster-simulation .quick-challenge button,
+[data-bs-theme="dark"] .disaster-simulation .hot-challenge button,
+[data-bs-theme="dark"] .disaster-simulation .training-option,
+[data-bs-theme="dark"] .disaster-simulation .challenge-option {
+  background-color: var(--sim-card-bg) !important;
+  border-color: var(--sim-button-bg) !important;
+  color: var(--sim-text-primary) !important;
+  opacity: 1 !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .challenge-button:hover,
+[data-bs-theme="dark"] .disaster-simulation .quick-challenge button:hover,
+[data-bs-theme="dark"] .disaster-simulation .hot-challenge button:hover,
+[data-bs-theme="dark"] .disaster-simulation .training-option:hover,
+[data-bs-theme="dark"] .disaster-simulation .challenge-option:hover {
+  background-color: var(--sim-bg-secondary) !important;
+  border-color: var(--sim-button-hover) !important;
+  color: var(--sim-text-primary) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px var(--sim-shadow) !important;
+}
+
+/* Override any light blue or transparent backgrounds on buttons */
+[data-bs-theme="dark"] .disaster-simulation button[style*="background"],
+[data-bs-theme="dark"] .disaster-simulation button[style*="background-color"],
+[data-bs-theme="dark"] .disaster-simulation [class*="button"][style*="background"],
+[data-bs-theme="dark"] .disaster-simulation [class*="button"][style*="background-color"] {
+  background-color: var(--sim-card-bg) !important;
+  background: var(--sim-card-bg) !important;
+}
+
+/* Force all button text to be visible */
+[data-bs-theme="dark"] .disaster-simulation button,
+[data-bs-theme="dark"] .disaster-simulation [class*="button"] {
+  color: var(--sim-text-primary) !important;
+  font-weight: 500 !important;
+}
+
+/* Override any transparent or light button backgrounds */
+[data-bs-theme="dark"] .disaster-simulation button[style*="transparent"],
+[data-bs-theme="dark"] .disaster-simulation button[style*="rgba"],
+[data-bs-theme="dark"] .disaster-simulation [class*="button"][style*="transparent"],
+[data-bs-theme="dark"] .disaster-simulation [class*="button"][style*="rgba"] {
+  background-color: var(--sim-card-bg) !important;
+  background: var(--sim-card-bg) !important;
+}
+
+/* Specific fixes for challenge section buttons */
+[data-bs-theme="dark"] .disaster-simulation .challenge-section button,
+[data-bs-theme="dark"] .disaster-simulation .challenge-grid button,
+[data-bs-theme="dark"] .disaster-simulation .challenge-item button,
+[data-bs-theme="dark"] .disaster-simulation .challenge-card button {
+  background-color: var(--sim-card-bg) !important;
+  border: 2px solid var(--sim-button-bg) !important;
+  color: var(--sim-text-primary) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .challenge-section button:hover,
+[data-bs-theme="dark"] .disaster-simulation .challenge-grid button:hover,
+[data-bs-theme="dark"] .disaster-simulation .challenge-item button:hover,
+[data-bs-theme="dark"] .disaster-simulation .challenge-card button:hover {
+  background-color: var(--sim-bg-secondary) !important;
+  border-color: var(--sim-button-hover) !important;
+  color: var(--sim-text-primary) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px var(--sim-shadow) !important;
+}
+
+/* Override any remaining light backgrounds on all buttons */
+[data-bs-theme="dark"] .disaster-simulation button {
+  background-color: var(--sim-card-bg) !important;
+  background: var(--sim-card-bg) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Force visibility for all button text */
+[data-bs-theme="dark"] .disaster-simulation button * {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Simulation Card Specific Dark Mode Fixes */
+[data-bs-theme="dark"] .disaster-simulation .game-card,
+[data-bs-theme="dark"] .disaster-simulation .training-card {
+  background-color: var(--sim-card-bg) !important;
+  border-color: var(--sim-card-border) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Card Body Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .card-body {
+  background-color: var(--sim-card-bg) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Card Title Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .card-title {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Card Text Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .card-text {
+  color: var(--sim-text-secondary) !important;
+}
+
+/* Feature Items Dark Mode - The small buttons like "Drop & Cover" */
+[data-bs-theme="dark"] .disaster-simulation .feature-item {
+  background-color: #1e293b !important; /* Dark background */
+  border: 2px solid #3b82f6 !important; /* Blue border */
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+  min-height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important; /* White text */
+}
+
+[data-bs-theme="dark"] .disaster-simulation .feature-item:hover {
+  background-color: #334155 !important; /* Slightly lighter dark background on hover */
+  border-color: #2563eb !important; /* Darker blue border on hover */
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+  color: #ffffff !important; /* Keep white text on hover */
+}
+
+[data-bs-theme="dark"] .disaster-simulation .feature-item small {
+  color: #ffffff !important; /* Bright white text */
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Override any hardcoded colors in feature items */
+[data-bs-theme="dark"] .disaster-simulation .feature-item[style*="color"],
+[data-bs-theme="dark"] .disaster-simulation .feature-item small[style*="color"] {
+  color: #ffffff !important; /* White text */
+}
+
+/* Additional targeting for feature items in different containers */
+[data-bs-theme="dark"] .disaster-simulation .row .col-6 .feature-item,
+[data-bs-theme="dark"] .disaster-simulation .row .col-6 .feature-item small,
+[data-bs-theme="dark"] .disaster-simulation .training-card .feature-item,
+[data-bs-theme="dark"] .disaster-simulation .training-card .feature-item small {
+  background-color: #1e293b !important; /* Dark background */
+  border: 2px solid #3b82f6 !important; /* Blue border */
+  color: #ffffff !important; /* White text */
+}
+
+/* Force visibility for all text in feature items */
+[data-bs-theme="dark"] .disaster-simulation .feature-item * {
+  color: #ffffff !important; /* White text */
+}
+
+/* Override any transparent or light backgrounds in feature items */
+[data-bs-theme="dark"] .disaster-simulation .feature-item[style*="background"],
+[data-bs-theme="dark"] .disaster-simulation .feature-item[style*="background-color"] {
+  background-color: var(--sim-card-bg) !important;
+  background: var(--sim-card-bg) !important;
+}
+
+/* Specific targeting for the exact structure in the component */
+[data-bs-theme="dark"] .disaster-simulation .row.g-3 .col-6 .feature-item {
+  background-color: #1e293b !important; /* Dark background */
+  border: 2px solid #3b82f6 !important; /* Blue border */
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  text-align: center !important;
+  min-height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  color: #ffffff !important; /* White text */
+}
+
+[data-bs-theme="dark"] .disaster-simulation .row.g-3 .col-6 .feature-item small {
+  color: #ffffff !important; /* Bright white text */
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Hover effect for the specific structure */
+[data-bs-theme="dark"] .disaster-simulation .row.g-3 .col-6 .feature-item:hover {
+  background-color: #334155 !important; /* Slightly lighter dark background on hover */
+  border-color: #2563eb !important; /* Darker blue border on hover */
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+  color: #ffffff !important; /* Keep white text on hover */
+}
+
+/* Force all text in the specific structure to be visible */
+[data-bs-theme="dark"] .disaster-simulation .row.g-3 .col-6 .feature-item * {
+  color: #ffffff !important; /* White text */
+}
+
+/* Override any inline styles in the specific structure */
+[data-bs-theme="dark"] .disaster-simulation .row.g-3 .col-6 .feature-item[style*="fontSize"],
+[data-bs-theme="dark"] .disaster-simulation .row.g-3 .col-6 .feature-item[style*="fontWeight"] {
+  color: #ffffff !important; /* White text */
+}
+
+/* Additional fallback for any remaining invisible text */
+[data-bs-theme="dark"] .disaster-simulation .training-card .row .col-6 small {
+  color: #ffffff !important; /* White text */
+  font-weight: 600 !important;
+  background-color: transparent !important;
+}
+
+/* Challenge Badge Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .badge {
+  background-color: var(--sim-button-bg) !important;
+  color: var(--sim-text-primary) !important;
+  border: 1px solid var(--sim-button-hover) !important;
+}
+
+/* Simulation Preview Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .simulation-preview {
+  background: var(--sim-card-bg) !important;
+  border-color: var(--sim-card-border) !important;
+}
+
+/* Override any light backgrounds in simulation previews */
+[data-bs-theme="dark"] .disaster-simulation .simulation-preview[style*="background"] {
+  background: var(--sim-card-bg) !important;
+}
+
+/* Simple Background Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .simple-bg {
+  background: var(--sim-bg-secondary) !important;
+  opacity: 0.3 !important;
+}
+
+/* Override any gradient backgrounds in simple-bg */
+[data-bs-theme="dark"] .disaster-simulation .simple-bg[style*="background"] {
+  background: var(--sim-bg-secondary) !important;
+}
+
+/* Welcome Message Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #f0f9ff"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #e0f2fe"],
+[data-bs-theme="dark"] .disaster-simulation [style*="background: linear-gradient(135deg, #bae6fd"] {
+  background: linear-gradient(135deg, var(--sim-card-bg) 0%, var(--sim-bg-secondary) 50%, var(--sim-bg-tertiary) 100%) !important;
+  border-color: var(--sim-card-border) !important;
+}
+
+/* Override hardcoded text colors in welcome message */
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #374151"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #1f2937"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #4b5563"] {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Progress Bar Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .progress {
+  background-color: var(--sim-bg-secondary) !important;
+  border-radius: 4px !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .progress-bar {
+  background-color: var(--sim-success-bg) !important;
+}
+
+/* Text Success Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .text-success {
+  color: var(--sim-success-bg) !important;
+}
+
+/* Dashboard Header Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .dashboard-header,
+[data-bs-theme="dark"] .disaster-simulation .game-header {
+  background-color: var(--sim-header-bg) !important;
+  color: var(--sim-header-text) !important;
+}
+
+/* Button Outline Light Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .btn-outline-light {
+  border-color: var(--sim-card-border) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .btn-outline-light:hover {
+  background-color: var(--sim-bg-secondary) !important;
+  border-color: var(--sim-button-bg) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Start Training Button Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .start-training-btn {
+  background: linear-gradient(135deg, var(--sim-button-bg) 0%, var(--sim-button-hover) 100%) !important;
+  color: var(--sim-text-primary) !important;
+  border: none !important;
+  box-shadow: 0 6px 20px var(--sim-shadow) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .start-training-btn:hover {
+  background: linear-gradient(135deg, var(--sim-button-hover) 0%, var(--sim-button-bg) 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px var(--sim-shadow-hover) !important;
+}
+
+/* Interactive Button Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .interactive-button {
+  background-color: var(--sim-card-bg) !important;
+  border: 2px solid var(--sim-button-bg) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .interactive-button:hover {
+  background-color: var(--sim-bg-secondary) !important;
+  border-color: var(--sim-button-hover) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Game Button Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .game-button {
+  background-color: var(--sim-button-bg) !important;
+  color: var(--sim-text-primary) !important;
+  border: 1px solid var(--sim-button-hover) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .game-button:hover {
+  background-color: var(--sim-button-hover) !important;
+  color: var(--sim-text-primary) !important;
+}
+
+/* Override any remaining light backgrounds in buttons */
+[data-bs-theme="dark"] .disaster-simulation button[style*="background: linear-gradient"],
+[data-bs-theme="dark"] .disaster-simulation [class*="button"][style*="background: linear-gradient"] {
+  background: linear-gradient(135deg, var(--sim-button-bg) 0%, var(--sim-button-hover) 100%) !important;
+}
+
+/* Force all text in cards to be visible */
+[data-bs-theme="dark"] .disaster-simulation .game-card *,
+[data-bs-theme="dark"] .disaster-simulation .training-card *,
+[data-bs-theme="dark"] .disaster-simulation .card-body * {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Override any remaining hardcoded colors */
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #374151"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #1f2937"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #4b5563"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #6b7280"],
+[data-bs-theme="dark"] .disaster-simulation [style*="color: #9ca3af"] {
+  color: var(--sim-text-primary) !important;
+}
+
+/* Card Border Colors Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .border-warning {
+  border-color: var(--sim-warning-bg) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .border-danger {
+  border-color: var(--sim-error-bg) !important;
+}
+
+/* Text Color Classes Dark Mode */
+[data-bs-theme="dark"] .disaster-simulation .text-warning {
+  color: var(--sim-warning-bg) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .text-danger {
+  color: var(--sim-error-bg) !important;
+}
+
+[data-bs-theme="dark"] .disaster-simulation .text-info {
+  color: var(--sim-button-bg) !important;
+}
+
+/* Dark Mode Specific Overrides */
+[data-bs-theme="dark"] .disaster-simulation {
+  background: linear-gradient(135deg, var(--sim-bg-primary) 0%, var(--sim-bg-secondary) 50%, var(--sim-bg-tertiary) 100%);
+}
+
+[data-bs-theme="dark"] .disaster-simulation::before {
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+}
+
+/* Dark Mode Card Enhancements */
+[data-bs-theme="dark"] .game-card {
+  box-shadow: 0 4px 6px -1px var(--sim-shadow), 0 2px 4px -1px var(--sim-shadow), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme="dark"] .game-card:hover {
+  box-shadow: 0 20px 25px -5px var(--sim-shadow-hover), 0 10px 10px -5px var(--sim-shadow-hover), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Button Enhancements */
+[data-bs-theme="dark"] .game-button {
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4), 0 2px 4px -1px rgba(59, 130, 246, 0.3);
+}
+
+[data-bs-theme="dark"] .game-button:hover {
+  box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.5), 0 4px 6px -2px rgba(59, 130, 246, 0.4);
+}
+
+/* Main Container */
+.disaster-simulation {
+  background: linear-gradient(135deg, var(--sim-bg-primary) 0%, var(--sim-bg-secondary) 50%, var(--sim-bg-tertiary) 100%);
+  min-height: 100vh;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  color: var(--sim-text-primary);
+}
+
+
+/* Subtle Background Elements */
+.disaster-simulation::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Simple Card Styling */
+.game-card {
+  background: var(--sim-card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px var(--sim-shadow), 0 2px 4px -1px var(--sim-shadow);
+  border: 2px solid var(--sim-card-border);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: var(--sim-text-primary);
+}
+
+.game-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 25px -5px var(--sim-shadow-hover), 0 10px 10px -5px var(--sim-shadow-hover);
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981, #f59e0b, #ef4444);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+/* Card Headers */
+.game-header {
+  background: var(--sim-header-bg);
+  border-radius: 12px 12px 0 0;
+  color: var(--sim-header-text);
+  padding: 20px;
+  position: relative;
+}
+
+.earthquake-header {
+  background: #f59e0b;
+}
+
+.fire-header {
+  background: #ea580c;
+}
+
+.dashboard-header {
+  background: #1e40af;
+}
+
+.flood-header {
+  background: #0ea5e9;
+}
+
+.cyclone-header {
+  background: #8b5cf6;
+}
+
+.landslide-header {
+  background: #059669;
+}
+
+/* Additional Border Colors */
+.border-purple {
+  border-color: #8b5cf6 !important;
+}
+
+.text-purple {
+  color: #8b5cf6 !important;
+}
+
+/* Simple Scene Container */
+.scene-container {
+  position: relative;
+  height: 150px;
+  background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  margin: 20px 0;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Simple Icons */
+.scene-icon {
+  font-size: 3rem;
+  color: var(--sim-text-secondary);
+  opacity: 0.8;
+}
+
+/* Simple Buttons */
+.game-button {
+  background: linear-gradient(135deg, var(--sim-button-bg) 0%, var(--sim-button-hover) 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.game-button:hover {
+  background: linear-gradient(135deg, var(--sim-button-hover) 0%, #1e40af 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.4), 0 4px 6px -2px rgba(59, 130, 246, 0.3);
+}
+
+.game-button:hover::before {
+  left: 100%;
+}
+
+.game-button:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
+}
+
+/* Option Buttons */
+.option-button {
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  color: var(--sim-text-primary);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.option-button:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.option-button.correct {
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+.option-button.incorrect {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+/* Progress Bar */
+.progress-container {
+  background: #f1f5f9;
+  border-radius: 6px;
+  height: 8px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+/* Badge Styling */
+.achievement-badge {
+  background: #fbbf24;
+  color: #92400e;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid #f59e0b;
+}
+
+/* Feedback */
+.feedback-container {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  background: #6b7280;
+  border-radius: 50%;
+  animation: loading-pulse 1.4s infinite ease-in-out both;
+}
+
+.loading-dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes loading-pulse {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-card {
+    margin: 10px;
+    border-radius: 20px;
+  }
+  
+  .scene-container {
+    height: 150px;
+  }
+  
+  .game-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  .option-button {
+    padding: 15px;
+  }
+}
+
+/* Dark Theme Support */
+[data-bs-theme="dark"] .game-card {
+  background: rgba(15, 23, 42, 0.95);
+  color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .option-button {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .option-button:hover {
+  border-color: #667eea;
+  background: #334155;
+}
+
+/* Interactive Elements */
+.interactive-element {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.interactive-element:hover {
+  transform: scale(1.05);
+}
+
+/* Success Animation */
+.success-animation {
+  animation: success-bounce 0.6s ease;
+}
+
+@keyframes success-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Card Entrance */
+.game-card {
+  animation: card-entrance 0.3s ease-out;
+}
+
+@keyframes card-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Simple Simulation Previews */
+.simulation-preview {
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 2px solid #e5e7eb;
+}
+
+/* Icon Containers */
+.earthquake-icon-container,
+.fire-icon-container,
+.flood-icon-container,
+.cyclone-icon-container,
+.landslide-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.earthquake-icon,
+.fire-icon,
+.flood-icon,
+.cyclone-icon,
+.landslide-icon {
+  font-size: 1.5rem;
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.1);
+  }
+}
+
+/* Button Glow Effect */
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.game-button:hover .button-glow {
+  transform: translateX(100%);
+}
+
+/* ===== ADVANCED DISASTER ANIMATIONS ===== */
+
+/* Earthquake Animations */
+.earthquake-animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.earthquake-symbol {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  animation: earthquake-shake 2s ease-in-out infinite;
+}
+
+@keyframes earthquake-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  10% { transform: translateX(-5px) rotate(-1deg); }
+  20% { transform: translateX(5px) rotate(1deg); }
+  30% { transform: translateX(-3px) rotate(-0.5deg); }
+  40% { transform: translateX(3px) rotate(0.5deg); }
+  50% { transform: translateX(-2px) rotate(-0.3deg); }
+  60% { transform: translateX(2px) rotate(0.3deg); }
+  70% { transform: translateX(-1px) rotate(-0.1deg); }
+  80% { transform: translateX(1px) rotate(0.1deg); }
+  90% { transform: translateX(0) rotate(0deg); }
+}
+
+.ground-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, #8b4513, #a0522d);
+  border-radius: 0 0 60px 60px;
+}
+
+.crack {
+  position: absolute;
+  background: #2d1810;
+  animation: crack-expand 3s ease-in-out infinite;
+}
+
+.crack-1 {
+  width: 2px;
+  height: 20px;
+  left: 30px;
+  bottom: 0;
+  animation-delay: 0s;
+}
+
+.crack-2 {
+  width: 2px;
+  height: 15px;
+  left: 60px;
+  bottom: 0;
+  animation-delay: 0.5s;
+}
+
+.crack-3 {
+  width: 2px;
+  height: 25px;
+  left: 90px;
+  bottom: 0;
+  animation-delay: 1s;
+}
+
+@keyframes crack-expand {
+  0%, 100% { height: 0; opacity: 0; }
+  50% { height: 20px; opacity: 1; }
+}
+
+.seismic-waves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wave {
+  position: absolute;
+  border: 3px solid #ff6b6b;
+  border-radius: 50%;
+  animation: seismic-wave 2s ease-out infinite;
+}
+
+.wave-1 {
+  width: 40px;
+  height: 40px;
+  animation-delay: 0s;
+}
+
+.wave-2 {
+  width: 60px;
+  height: 60px;
+  animation-delay: 0.3s;
+}
+
+.wave-3 {
+  width: 80px;
+  height: 80px;
+  animation-delay: 0.6s;
+}
+
+@keyframes seismic-wave {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.epicenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pulse {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ff0000;
+  border-radius: 50%;
+  animation: epicenter-pulse 1.5s ease-in-out infinite;
+}
+
+.pulse-1 { animation-delay: 0s; }
+.pulse-2 { animation-delay: 0.5s; }
+.pulse-3 { animation-delay: 1s; }
+
+@keyframes epicenter-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2); opacity: 0.5; }
+}
+
+/* Fire Animations */
+.fire-animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fire-symbol {
+  position: relative;
+  width: 100px;
+  height: 120px;
+}
+
+.flame {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: fire-flicker 1.5s ease-in-out infinite;
+}
+
+.flame-1 {
+  width: 30px;
+  height: 40px;
+  background: linear-gradient(45deg, #ff4500, #ff6347);
+  left: 35px;
+  bottom: 0;
+  animation-delay: 0s;
+}
+
+.flame-2 {
+  width: 25px;
+  height: 35px;
+  background: linear-gradient(45deg, #ff6347, #ff7f50);
+  left: 20px;
+  bottom: 5px;
+  animation-delay: 0.3s;
+}
+
+.flame-3 {
+  width: 20px;
+  height: 30px;
+  background: linear-gradient(45deg, #ff7f50, #ffa500);
+  left: 50px;
+  bottom: 8px;
+  animation-delay: 0.6s;
+}
+
+.flame-4 {
+  width: 15px;
+  height: 25px;
+  background: linear-gradient(45deg, #ffa500, #ffff00);
+  left: 42px;
+  bottom: 15px;
+  animation-delay: 0.9s;
+}
+
+@keyframes fire-flicker {
+  0%, 100% { transform: scaleY(1) scaleX(1) rotate(-2deg); }
+  25% { transform: scaleY(1.1) scaleX(0.9) rotate(2deg); }
+  50% { transform: scaleY(0.9) scaleX(1.1) rotate(-1deg); }
+  75% { transform: scaleY(1.05) scaleX(0.95) rotate(1deg); }
+}
+
+.spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ffff00;
+  border-radius: 50%;
+  animation: spark-fly 2s ease-out infinite;
+}
+
+.spark-1 {
+  left: 30px;
+  bottom: 40px;
+  animation-delay: 0.5s;
+}
+
+.spark-2 {
+  left: 50px;
+  bottom: 35px;
+  animation-delay: 1s;
+}
+
+.spark-3 {
+  left: 40px;
+  bottom: 45px;
+  animation-delay: 1.5s;
+}
+
+@keyframes spark-fly {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-60px) scale(0); opacity: 0; }
+}
+
+.smoke {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(128, 128, 128, 0.6);
+  border-radius: 50%;
+  animation: smoke-rise 3s ease-out infinite;
+}
+
+.smoke-1 {
+  left: 35px;
+  bottom: 50px;
+  animation-delay: 0s;
+}
+
+.smoke-2 {
+  left: 45px;
+  bottom: 55px;
+  animation-delay: 1s;
+}
+
+@keyframes smoke-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-80px) scale(2); opacity: 0; }
+}
+
+/* Flood Animations */
+.flood-animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flood-symbol {
+  position: relative;
+  width: 120px;
+  height: 100px;
+}
+
+.water-wave {
+  position: absolute;
+  background: linear-gradient(45deg, #0ea5e9, #0284c7);
+  border-radius: 50%;
+  animation: water-wave-motion 2s ease-in-out infinite;
+}
+
+.wave-1 {
+  width: 60px;
+  height: 20px;
+  bottom: 20px;
+  left: 10px;
+  animation-delay: 0s;
+}
+
+.wave-2 {
+  width: 80px;
+  height: 25px;
+  bottom: 15px;
+  left: 5px;
+  animation-delay: 0.5s;
+}
+
+.wave-3 {
+  width: 100px;
+  height: 30px;
+  bottom: 10px;
+  left: 0;
+  animation-delay: 1s;
+}
+
+@keyframes water-wave-motion {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(10px) scaleY(1.2); }
+}
+
+.water-drop {
+  position: absolute;
+  width: 4px;
+  height: 6px;
+  background: #0ea5e9;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: drop-fall 2s ease-in infinite;
+}
+
+.drop-1 {
+  left: 20px;
+  top: 10px;
+  animation-delay: 0s;
+}
+
+.drop-2 {
+  left: 40px;
+  top: 5px;
+  animation-delay: 0.3s;
+}
+
+.drop-3 {
+  left: 60px;
+  top: 15px;
+  animation-delay: 0.6s;
+}
+
+.drop-4 {
+  left: 80px;
+  top: 8px;
+  animation-delay: 0.9s;
+}
+
+.drop-5 {
+  left: 100px;
+  top: 12px;
+  animation-delay: 1.2s;
+}
+
+@keyframes drop-fall {
+  0% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(100px); opacity: 0; }
+}
+
+/* Cyclone Animations */
+.cyclone-animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cyclone-symbol {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.cyclone-spiral {
+  position: absolute;
+  border: 3px solid #8b5cf6;
+  border-radius: 50%;
+  animation: cyclone-spin 3s linear infinite;
+}
+
+.spiral-1 {
+  width: 40px;
+  height: 40px;
+  top: 30px;
+  left: 30px;
+  animation-delay: 0s;
+}
+
+.spiral-2 {
+  width: 60px;
+  height: 60px;
+  top: 20px;
+  left: 20px;
+  animation-delay: 0.5s;
+}
+
+.spiral-3 {
+  width: 80px;
+  height: 80px;
+  top: 10px;
+  left: 10px;
+  animation-delay: 1s;
+}
+
+@keyframes cyclone-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cyclone-center {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #4c1d95;
+  border-radius: 50%;
+  top: 44px;
+  left: 44px;
+  animation: center-pulse 1s ease-in-out infinite;
+}
+
+@keyframes center-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+.wind-line {
+  position: absolute;
+  height: 2px;
+  background: #8b5cf6;
+  animation: wind-move 2s ease-in-out infinite;
+}
+
+.wind-1 {
+  width: 30px;
+  top: 20px;
+  left: 10px;
+  animation-delay: 0s;
+}
+
+.wind-2 {
+  width: 25px;
+  top: 40px;
+  right: 10px;
+  animation-delay: 0.5s;
+}
+
+.wind-3 {
+  width: 35px;
+  bottom: 30px;
+  left: 15px;
+  animation-delay: 1s;
+}
+
+.wind-4 {
+  width: 20px;
+  bottom: 15px;
+  right: 20px;
+  animation-delay: 1.5s;
+}
+
+@keyframes wind-move {
+  0%, 100% { transform: translateX(0); opacity: 0.5; }
+  50% { transform: translateX(20px); opacity: 1; }
+}
+
+/* Landslide Animations */
+.landslide-animation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landslide-symbol {
+  position: relative;
+  width: 120px;
+  height: 100px;
+}
+
+.mountain-slope {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 80px solid #059669;
+  bottom: 0;
+  left: 0;
+  animation: slope-shake 3s ease-in-out infinite;
+}
+
+@keyframes slope-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.rock {
+  position: absolute;
+  background: #374151;
+  border-radius: 3px;
+  animation: rock-fall 4s ease-in infinite;
+}
+
+.rock-1 {
+  width: 8px;
+  height: 6px;
+  top: 20px;
+  left: 30px;
+  animation-delay: 0s;
+}
+
+.rock-2 {
+  width: 6px;
+  height: 5px;
+  top: 15px;
+  left: 50px;
+  animation-delay: 1s;
+}
+
+.rock-3 {
+  width: 10px;
+  height: 7px;
+  top: 25px;
+  left: 70px;
+  animation-delay: 2s;
+}
+
+@keyframes rock-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(80px) rotate(180deg); opacity: 0; }
+}
+
+.debris {
+  position: absolute;
+  background: #6b7280;
+  border-radius: 2px;
+  animation: debris-slide 3s ease-in infinite;
+}
+
+.debris-1 {
+  width: 4px;
+  height: 3px;
+  top: 30px;
+  left: 40px;
+  animation-delay: 0.5s;
+}
+
+.debris-2 {
+  width: 5px;
+  height: 4px;
+  top: 35px;
+  left: 60px;
+  animation-delay: 1.5s;
+}
+
+.debris-3 {
+  width: 3px;
+  height: 2px;
+  top: 40px;
+  left: 80px;
+  animation-delay: 2.5s;
+}
+
+@keyframes debris-slide {
+  0% { transform: translateX(0) translateY(0); opacity: 1; }
+  100% { transform: translateX(30px) translateY(60px); opacity: 0; }
+}
+
+.dust-cloud {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: rgba(107, 114, 128, 0.4);
+  border-radius: 50%;
+  animation: dust-spread 2s ease-out infinite;
+}
+
+.dust-1 {
+  top: 50px;
+  left: 50px;
+  animation-delay: 0s;
+}
+
+.dust-2 {
+  top: 60px;
+  left: 70px;
+  animation-delay: 1s;
+}
+
+@keyframes dust-spread {
+  0% { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Mini Preview Animations */
+.earthquake-preview-symbol {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  animation: mini-earthquake 2s ease-in-out infinite;
+}
+
+@keyframes mini-earthquake {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(2px); }
+}
+
+.mini-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #8b4513;
+  border-radius: 0 0 30px 30px;
+}
+
+.mini-crack {
+  position: absolute;
+  width: 1px;
+  height: 10px;
+  background: #2d1810;
+  left: 30px;
+  bottom: 0;
+  animation: mini-crack-expand 2s ease-in-out infinite;
+}
+
+@keyframes mini-crack-expand {
+  0%, 100% { height: 0; }
+  50% { height: 10px; }
+}
+
+.mini-waves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mini-wave {
+  position: absolute;
+  border: 2px solid #ff6b6b;
+  border-radius: 50%;
+  animation: mini-seismic-wave 1.5s ease-out infinite;
+}
+
+.mini-wave:nth-child(1) {
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.mini-wave:nth-child(2) {
+  width: 30px;
+  height: 30px;
+  animation-delay: 0.3s;
+}
+
+@keyframes mini-seismic-wave {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.mini-epicenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mini-pulse {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ff0000;
+  border-radius: 50%;
+  animation: mini-epicenter-pulse 1s ease-in-out infinite;
+}
+
+@keyframes mini-epicenter-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+}
+
+/* Fire Preview Animations */
+.fire-preview-symbol {
+  position: relative;
+  width: 50px;
+  height: 60px;
+}
+
+.mini-flame {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: mini-fire-flicker 1s ease-in-out infinite;
+}
+
+.mini-flame:nth-child(1) {
+  width: 15px;
+  height: 20px;
+  background: linear-gradient(45deg, #ff4500, #ff6347);
+  left: 17px;
+  bottom: 0;
+  animation-delay: 0s;
+}
+
+.mini-flame:nth-child(2) {
+  width: 12px;
+  height: 18px;
+  background: linear-gradient(45deg, #ff6347, #ff7f50);
+  left: 10px;
+  bottom: 2px;
+  animation-delay: 0.3s;
+}
+
+.mini-flame:nth-child(3) {
+  width: 10px;
+  height: 15px;
+  background: linear-gradient(45deg, #ff7f50, #ffa500);
+  left: 25px;
+  bottom: 4px;
+  animation-delay: 0.6s;
+}
+
+@keyframes mini-fire-flicker {
+  0%, 100% { transform: scaleY(1) rotate(-1deg); }
+  50% { transform: scaleY(1.1) rotate(1deg); }
+}
+
+.mini-spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffff00;
+  border-radius: 50%;
+  animation: mini-spark-fly 1.5s ease-out infinite;
+}
+
+.mini-spark:nth-child(4) {
+  left: 15px;
+  bottom: 20px;
+  animation-delay: 0.5s;
+}
+
+.mini-spark:nth-child(5) {
+  left: 25px;
+  bottom: 18px;
+  animation-delay: 1s;
+}
+
+@keyframes mini-spark-fly {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-30px) scale(0); opacity: 0; }
+}
+
+/* Flood Preview Animations */
+.flood-preview-symbol {
+  position: relative;
+  width: 60px;
+  height: 50px;
+}
+
+.mini-wave {
+  position: absolute;
+  background: linear-gradient(45deg, #0ea5e9, #0284c7);
+  border-radius: 50%;
+  animation: mini-water-wave 1.5s ease-in-out infinite;
+}
+
+.mini-wave:nth-child(1) {
+  width: 30px;
+  height: 10px;
+  bottom: 10px;
+  left: 5px;
+  animation-delay: 0s;
+}
+
+.mini-wave:nth-child(2) {
+  width: 40px;
+  height: 12px;
+  bottom: 8px;
+  left: 2px;
+  animation-delay: 0.5s;
+}
+
+@keyframes mini-water-wave {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(5px) scaleY(1.2); }
+}
+
+.mini-drop {
+  position: absolute;
+  width: 2px;
+  height: 3px;
+  background: #0ea5e9;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: mini-drop-fall 1.5s ease-in infinite;
+}
+
+.mini-drop:nth-child(3) {
+  left: 10px;
+  top: 5px;
+  animation-delay: 0s;
+}
+
+.mini-drop:nth-child(4) {
+  left: 20px;
+  top: 3px;
+  animation-delay: 0.3s;
+}
+
+.mini-drop:nth-child(5) {
+  left: 30px;
+  top: 6px;
+  animation-delay: 0.6s;
+}
+
+@keyframes mini-drop-fall {
+  0% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(50px); opacity: 0; }
+}
+
+/* Cyclone Preview Animations */
+.cyclone-preview-symbol {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.mini-spiral {
+  position: absolute;
+  border: 2px solid #8b5cf6;
+  border-radius: 50%;
+  animation: mini-cyclone-spin 2s linear infinite;
+}
+
+.mini-spiral:nth-child(1) {
+  width: 20px;
+  height: 20px;
+  top: 15px;
+  left: 15px;
+  animation-delay: 0s;
+}
+
+.mini-spiral:nth-child(2) {
+  width: 30px;
+  height: 30px;
+  top: 10px;
+  left: 10px;
+  animation-delay: 0.5s;
+}
+
+@keyframes mini-cyclone-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.mini-center {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #4c1d95;
+  border-radius: 50%;
+  top: 22px;
+  left: 22px;
+  animation: mini-center-pulse 1s ease-in-out infinite;
+}
+
+@keyframes mini-center-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.mini-wind {
+  position: absolute;
+  height: 1px;
+  background: #8b5cf6;
+  animation: mini-wind-move 1.5s ease-in-out infinite;
+}
+
+.mini-wind:nth-child(4) {
+  width: 15px;
+  top: 10px;
+  left: 5px;
+  animation-delay: 0s;
+}
+
+.mini-wind:nth-child(5) {
+  width: 12px;
+  bottom: 15px;
+  right: 5px;
+  animation-delay: 0.7s;
+}
+
+@keyframes mini-wind-move {
+  0%, 100% { transform: translateX(0); opacity: 0.5; }
+  50% { transform: translateX(10px); opacity: 1; }
+}
+
+/* Landslide Preview Animations */
+.landslide-preview-symbol {
+  position: relative;
+  width: 60px;
+  height: 50px;
+}
+
+.mini-slope {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 40px solid #059669;
+  bottom: 0;
+  left: 0;
+  animation: mini-slope-shake 2s ease-in-out infinite;
+}
+
+@keyframes mini-slope-shake {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(1px); }
+}
+
+.mini-rock {
+  position: absolute;
+  background: #374151;
+  border-radius: 2px;
+  animation: mini-rock-fall 3s ease-in infinite;
+}
+
+.mini-rock:nth-child(2) {
+  width: 4px;
+  height: 3px;
+  top: 10px;
+  left: 15px;
+  animation-delay: 0s;
+}
+
+.mini-rock:nth-child(3) {
+  width: 3px;
+  height: 2px;
+  top: 8px;
+  left: 25px;
+  animation-delay: 1s;
+}
+
+@keyframes mini-rock-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(40px) rotate(90deg); opacity: 0; }
+}
+
+.mini-debris {
+  position: absolute;
+  background: #6b7280;
+  border-radius: 1px;
+  animation: mini-debris-slide 2s ease-in infinite;
+}
+
+.mini-debris:nth-child(4) {
+  width: 2px;
+  height: 1px;
+  top: 15px;
+  left: 20px;
+  animation-delay: 0.5s;
+}
+
+.mini-debris:nth-child(5) {
+  width: 2px;
+  height: 2px;
+  top: 18px;
+  left: 30px;
+  animation-delay: 1.5s;
+}
+
+@keyframes mini-debris-slide {
+  0% { transform: translateX(0) translateY(0); opacity: 1; }
+  100% { transform: translateX(15px) translateY(30px); opacity: 0; }
+}
+
+/* Background Animations for Cards */
+/* Simple Background for all training modules */
+.simple-bg {
+  transition: opacity 0.3s ease;
+}
+
+/* Enhanced Interactive Elements */
+.interactive-element {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-element::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.interactive-element:hover::before {
+  left: 100%;
+}
+
+.interactive-element:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+/* Emoji Integration */
+.emoji-large {
+  font-size: 2rem;
+  animation: emoji-bounce 2s ease-in-out infinite;
+}
+
+@keyframes emoji-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.emoji-medium {
+  font-size: 1.5rem;
+  animation: emoji-wiggle 3s ease-in-out infinite;
+}
+
+@keyframes emoji-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.emoji-small {
+  font-size: 1rem;
+  animation: emoji-pulse 2s ease-in-out infinite;
+}
+
+@keyframes emoji-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Particle Effects */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  animation: particle-float 3s ease-out infinite;
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+/* Enhanced Success Animations */
+.success-animation {
+  animation: success-celebration 1s ease;
+}
+
+@keyframes success-celebration {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(2deg); }
+  50% { transform: scale(1.2) rotate(-2deg); }
+  75% { transform: scale(1.1) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Child-Friendly Color Enhancements */
+
+/* Colorful Training Cards */
+.training-card {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 3px solid #f59e0b;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.training-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.training-card:hover::before {
+  opacity: 1;
+  animation: shine 1.5s ease-in-out;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.training-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: #d97706;
+}
+
+/* Colorful Feature Items */
+.feature-item {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 2px solid #0ea5e9;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.feature-item:hover::before {
+  left: 100%;
+}
+
+.feature-item:hover {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(14, 165, 233, 0.2);
+}
+
+.feature-item small {
+  color: #0369a1;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+/* Colorful Start Buttons */
+.start-training-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  border-radius: 15px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.start-training-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.start-training-btn:hover::before {
+  left: 100%;
+}
+
+.start-training-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.start-training-btn:active {
+  transform: scale(0.98);
+}
+
+/* Colorful Progress Indicators */
+.progress-indicator {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-radius: 50px;
+  padding: 4px 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3); }
+  50% { box-shadow: 0 4px 15px rgba(139, 92, 246, 0.5); }
+}
+
+/* Colorful Achievement Badges */
+.achievement-badge {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border: 3px solid #d97706;
+  border-radius: 15px;
+  padding: 12px 20px;
+  color: #92400e;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: achievement-glow 3s ease-in-out infinite;
+}
+
+@keyframes achievement-glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3); }
+  50% { box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5); }
+}
+
+.achievement-badge::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: rotate(45deg);
+  animation: achievement-shine 3s ease-in-out infinite;
+}
+
+@keyframes achievement-shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}
+.option-button {
+  background: linear-gradient(135deg, var(--sim-card-bg) 0%, var(--sim-game-bg) 100%);
+  border: 2px solid var(--sim-card-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  color: var(--sim-text-primary);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.option-button:hover {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+.option-button.correct {
+  border-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  animation: correct-celebration 0.6s ease;
+}
+
+@keyframes correct-celebration {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.option-button.incorrect {
+  border-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  animation: incorrect-shake 0.5s ease;
+}
+
+@keyframes incorrect-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Interactive Button Styles */
+.interactive-button {
+  background: linear-gradient(135deg, var(--sim-button-bg) 0%, var(--sim-button-hover) 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+  transform: scale(1);
+}
+
+.interactive-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.interactive-button:hover {
+  background: linear-gradient(135deg, var(--sim-button-hover) 0%, #1e40af 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.4), 0 4px 6px -2px rgba(59, 130, 246, 0.3);
+}
+
+.interactive-button:hover::before {
+  left: 100%;
+}
+
+.interactive-button.pressed {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px -1px rgba(59, 130, 246, 0.3);
+}
+
+.interactive-button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.interactive-button.disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
+}
+
+/* Interactive Button as Option Button */
+.interactive-button.option-button {
+  background: linear-gradient(135deg, var(--sim-card-bg) 0%, var(--sim-game-bg) 100%);
+  border: 2px solid var(--sim-card-border);
+  color: var(--sim-text-primary);
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.interactive-button.option-button:hover {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-color: #3b82f6;
+  color: var(--sim-text-primary);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+}
+
+.interactive-button.option-button.correct {
+  border-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  color: var(--sim-text-primary);
+}
+
+.interactive-button.option-button.incorrect {
+  border-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  color: var(--sim-text-primary);
+}
+
+/* Option Text Styling */
+.interactive-button.option-button .option-text {
+  color: var(--sim-text-primary);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.interactive-button.option-button .option-letter {
+  color: #6b7280;
+}
+
+.interactive-button.option-button .badge {
+  background-color: #6b7280 !important;
+  color: white !important;
+}
+
+/* Particle Container */
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Enhanced Option Button with Interactive Effects */
+.option-button {
+  background: linear-gradient(135deg, var(--sim-card-bg) 0%, var(--sim-game-bg) 100%);
+  border: 2px solid var(--sim-card-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transform: scale(1);
+}
+
+.option-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.option-button:hover {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.option-button:hover::before {
+  left: 100%;
+}
+
+.option-button:active {
+  transform: scale(0.98);
+}
+
+.option-button.correct {
+  border-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  animation: correct-celebration 0.6s ease;
+}
+
+.option-button.incorrect {
+  border-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  animation: incorrect-shake 0.5s ease;
+}
+
+/* Enhanced Game Button */
+.game-button {
+  background: linear-gradient(135deg, var(--sim-button-bg) 0%, var(--sim-button-hover) 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
+  position: relative;
+  overflow: hidden;
+  transform: scale(1);
+}
+
+.game-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.game-button:hover {
+  background: linear-gradient(135deg, var(--sim-button-hover) 0%, #1e40af 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.4), 0 4px 6px -2px rgba(59, 130, 246, 0.3);
+}
+
+.game-button:hover::before {
+  left: 100%;
+}
+
+.game-button:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
+}
+
+/* Floating Animation for Emojis */
+.emoji-float {
+  animation: emoji-float 3s ease-in-out infinite;
+}
+
+@keyframes emoji-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Sparkle Effect */
+.sparkle {
+  position: relative;
+  overflow: hidden;
+}
+
+.sparkle::after {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.2rem;
+  animation: sparkle-twinkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Success Celebration Animation */
+.celebration {
+  animation: celebration-bounce 0.8s ease;
+}
+
+@keyframes celebration-bounce {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(2deg); }
+  50% { transform: scale(1.2) rotate(-2deg); }
+  75% { transform: scale(1.1) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Enhanced Card Hover Effects */
+.game-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 2px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.game-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981, #f59e0b, #ef4444);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced Scene Container with 3D Effect */
+.scene-container {
+  position: relative;
+  height: 150px;
+  background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  margin: 20px 0;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: perspective(1000px) rotateX(5deg);
+  transition: transform 0.3s ease;
+}
+
+.scene-container:hover {
+  transform: perspective(1000px) rotateX(0deg) scale(1.02);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Progress Bar */
+.progress-container {
+  background: #f1f5f9;
+  border-radius: 6px;
+  height: 8px;
+  overflow: hidden;
+  margin: 20px 0;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progress-shine 2s ease-in-out infinite;
+}
+
+@keyframes progress-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+

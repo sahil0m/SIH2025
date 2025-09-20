@@ -39,6 +39,7 @@ function AppNav() {
                 <li className="nav-item"><NavLink className="nav-link" to="/learn"><i className="bi bi-mortarboard me-1"></i>Learn</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" to="/alerts"><i className="bi bi-broadcast me-1"></i>Alerts</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" to="/drills"><i className="bi bi-joystick me-1"></i>Drills</NavLink></li>
+                <li className="nav-item"><NavLink className="nav-link" to="/simulation"><i className="bi bi-controller me-1"></i>Simulation</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" to="/leaderboard"><i className="bi bi-trophy me-1"></i>Leaderboard</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" to="/emergency"><i className="bi bi-telephone me-1"></i>Emergency</NavLink></li>
               </>
@@ -48,6 +49,7 @@ function AppNav() {
                 <li className="nav-item"><NavLink className="nav-link" to="/teacher"><i className="bi bi-speedometer2 me-1"></i>Dashboard</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" to="/alerts"><i className="bi bi-broadcast me-1"></i>Alerts</NavLink></li>
                 <li className="nav-item"><NavLink className="nav-link" to="/drills"><i className="bi bi-flag me-1"></i>Drills</NavLink></li>
+                <li className="nav-item"><NavLink className="nav-link" to="/simulation"><i className="bi bi-controller me-1"></i>Simulation</NavLink></li>
               </>
             )}
             {user?.role === 'admin' && (
