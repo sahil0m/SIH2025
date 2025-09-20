@@ -614,7 +614,6 @@ function Learn() {
                           <small className="text-muted text-capitalize">{video.id.split('-')[0]}</small>
                         </div>
                         <div className="d-flex align-items-center gap-2">
-                          <span className="badge bg-primary rounded-pill">{video.minutes}m</span>
                           <i className="bi bi-play-circle text-primary"></i>
                         </div>
                       </li>

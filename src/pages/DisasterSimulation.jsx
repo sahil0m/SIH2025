@@ -20,7 +20,7 @@ function DisasterSimulation() {
               </h5>
               <div className="row">
                 <div className="col-md-6">
-                  <h6>🌍 Earthquake Simulation</h6>
+                  <h6>Earthquake Simulation</h6>
                   <ul className="small">
                     <li>Learn Drop, Cover, and Hold techniques</li>
                     <li>Practice safe evacuation procedures</li>
@@ -29,7 +29,7 @@ function DisasterSimulation() {
                   </ul>
                 </div>
                 <div className="col-md-6">
-                  <h6>🔥 Fire Drill Training</h6>
+                  <h6>Fire Drill Training</h6>
                   <ul className="small">
                     <li>Test your reaction time under pressure</li>
                     <li>Learn proper fire evacuation procedures</li>

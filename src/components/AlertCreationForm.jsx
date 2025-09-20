@@ -23,14 +23,14 @@ function AlertCreationForm({ onSaveAlert, onCancel }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const alertTypes = [
-    { value: 'earthquake', label: 'Earthquake', icon: '🌍', color: 'danger' },
-    { value: 'flood', label: 'Flood', icon: '🌊', color: 'info' },
-    { value: 'fire', label: 'Fire', icon: '🔥', color: 'danger' },
-    { value: 'cyclone', label: 'Cyclone', icon: '🌀', color: 'warning' },
-    { value: 'landslide', label: 'Landslide', icon: '⛰️', color: 'warning' },
-    { value: 'tsunami', label: 'Tsunami', icon: '🌊', color: 'danger' },
-    { value: 'drought', label: 'Drought', icon: '☀️', color: 'warning' },
-    { value: 'general', label: 'General Alert', icon: '📢', color: 'secondary' }
+    { value: 'earthquake', label: 'Earthquake', color: 'danger' },
+    { value: 'flood', label: 'Flood', color: 'info' },
+    { value: 'fire', label: 'Fire', color: 'danger' },
+    { value: 'cyclone', label: 'Cyclone', color: 'warning' },
+    { value: 'landslide', label: 'Landslide', color: 'warning' },
+    { value: 'tsunami', label: 'Tsunami', color: 'danger' },
+    { value: 'drought', label: 'Drought', color: 'warning' },
+    { value: 'general', label: 'General Alert', color: 'secondary' }
   ];
 
   const severityLevels = [
@@ -212,7 +212,7 @@ function AlertCreationForm({ onSaveAlert, onCancel }) {
               >
                 {alertTypes.map(type => (
                   <option key={type.value} value={type.value}>
-                    {type.icon} {type.label}
+                    {type.label}
                   </option>
                 ))}
               </select>
@@ -394,15 +394,12 @@ function AlertCreationForm({ onSaveAlert, onCancel }) {
                 <div className="d-flex align-items-start gap-3">
                   <div className="flex-shrink-0">
                     <div className={`bg-${selectedAlertType?.color || 'secondary'}-subtle rounded-circle d-flex align-items-center justify-content-center`} style={{ width: '40px', height: '40px' }}>
-                      <span style={{ fontSize: '1.2rem' }}>{selectedAlertType?.icon || '📢'}</span>
+                      <i className="bi bi-exclamation-triangle text-danger"></i>
                     </div>
                   </div>
                   <div className="flex-grow-1">
                     <div className="d-flex align-items-center gap-2 mb-1">
                       <h6 className="mb-0 fw-semibold">{formData.title || 'Alert Title'}</h6>
-                      <span className={`badge bg-${selectedSeverity?.color || 'secondary'}`}>
-                        {selectedSeverity?.label || 'Medium'}
-                      </span>
                     </div>
                     <div className="text-muted small mb-1">
                       {formData.validFrom ? new Date(formData.validFrom).toLocaleString() : 'Date and time'}

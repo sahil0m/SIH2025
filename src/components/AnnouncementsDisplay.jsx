@@ -117,17 +117,12 @@ function AnnouncementsDisplay({ userRole }) {
                     <div className="d-flex align-items-start gap-3">
                       <div className="flex-shrink-0">
                         <div className="bg-warning-subtle rounded-circle d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                          <span style={{ fontSize: '1.2rem' }}>
-                            {getDrillTypeIcon(announcement.drillType)}
-                          </span>
+                          <i className="bi bi-flag text-warning"></i>
                         </div>
                       </div>
                       <div className="flex-grow-1">
                         <div className="d-flex justify-content-between align-items-start mb-2">
                           <h6 className="card-title mb-0 fw-semibold">{announcement.title}</h6>
-                          <span className={`badge bg-${getPriorityColor(announcement.priority || 'normal')}`}>
-                            {announcement.priority || 'normal'}
-                          </span>
                         </div>
                         <p className="card-text text-muted small mb-2">{announcement.message}</p>
                         <div className="d-flex justify-content-between align-items-center">
@@ -191,13 +186,12 @@ function AnnouncementsDisplay({ userRole }) {
                     <div className="d-flex align-items-start gap-3">
                       <div className="flex-shrink-0">
                         <div className="bg-danger-subtle rounded-circle d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                          <span style={{ fontSize: '1.2rem' }}>🚨</span>
+                          <i className="bi bi-exclamation-triangle text-danger"></i>
                         </div>
                       </div>
                       <div className="flex-grow-1">
                         <div className="d-flex justify-content-between align-items-start mb-2">
                           <h6 className="card-title mb-0 fw-semibold text-danger">{alert.title}</h6>
-                          <span className="badge bg-danger">Emergency</span>
                         </div>
                         <p className="card-text text-muted small mb-2">{alert.message}</p>
                         <div className="d-flex justify-content-between align-items-center">

@@ -23,10 +23,10 @@ function TeacherDrillAnnouncement({ onSendDrillAnnouncement }) {
   ];
 
   const drillTypes = [
-    { value: 'fire', label: 'Fire Safety Drill', icon: '🔥' },
-    { value: 'earthquake', label: 'Earthquake Drill', icon: '🌍' },
-    { value: 'flood', label: 'Flood Safety Drill', icon: '🌊' },
-    { value: 'evacuation', label: 'General Evacuation', icon: '🚨' }
+    { value: 'fire', label: 'Fire Safety Drill' },
+    { value: 'earthquake', label: 'Earthquake Drill' },
+    { value: 'flood', label: 'Flood Safety Drill' },
+    { value: 'evacuation', label: 'General Evacuation' }
   ];
 
   const priorities = [
@@ -179,7 +179,7 @@ function TeacherDrillAnnouncement({ onSendDrillAnnouncement }) {
               >
                 {drillTypes.map(type => (
                   <option key={type.value} value={type.value}>
-                    {type.icon} {type.label}
+                    {type.label}
                   </option>
                 ))}
               </select>

@@ -244,7 +244,7 @@ function Alerts() {
             </div>
           </div>
           <div className="col-6 col-md-3">
-            <div className="card bg-info text-white">
+            <div className="card text-white" style={{ backgroundColor: '#5f8a8b' }}>
               <div className="card-body text-center">
                 <h5 className="card-title">{user?.institution || 'Your Region'}</h5>
                 <p className="card-text small">Your Region</p>
@@ -338,25 +338,13 @@ function Alerts() {
                   <div className="card-body">
                     <div className="d-flex align-items-start gap-3">
                       <div className="flex-shrink-0">
-                        <div className={`bg-${getSeverityColor(alert.severity)}-subtle rounded-circle d-flex align-items-center justify-content-center`} style={{ width: '50px', height: '50px' }}>
-                          <span style={{ fontSize: '1.5rem' }}>
-                            {getAlertTypeIcon(alert.alertType)}
-                          </span>
+                        <div className="bg-danger-subtle rounded-circle d-flex align-items-center justify-content-center" style={{ width: '50px', height: '50px' }}>
+                          <i className="bi bi-exclamation-triangle text-danger"></i>
                         </div>
                       </div>
                       <div className="flex-grow-1">
                         <div className="d-flex justify-content-between align-items-start mb-2">
                           <h6 className="card-title mb-0 fw-semibold">{alert.title}</h6>
-                          <div className="d-flex gap-1">
-                            <span className={`badge bg-${getSeverityColor(alert.severity)}`}>
-                              {getSeverityLabel(alert.severity)}
-                            </span>
-                            {isAlertActive(alert) ? (
-                              <span className="badge bg-success">Active</span>
-                            ) : (
-                              <span className="badge bg-secondary">Expired</span>
-                            )}
-                          </div>
                         </div>
                         <p className="card-text text-muted small mb-2">{alert.description}</p>
                         <div className="d-flex justify-content-between align-items-center">

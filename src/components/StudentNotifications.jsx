@@ -141,7 +141,6 @@ function StudentNotifications() {
                             <i className="bi bi-clock me-1"></i>
                             {module.estimatedTime}
                           </div>
-                          <span className="badge bg-primary">New</span>
                         </div>
                       </div>
                     </div>
@@ -212,7 +211,6 @@ function StudentNotifications() {
                             <i className="bi bi-geo-alt me-1"></i>
                             {drill.location}
                           </div>
-                          <span className="badge bg-success">Confirmed</span>
                         </div>
                       </div>
                     </div>
@@ -283,15 +281,6 @@ function StudentNotifications() {
                             {formatDate(assignment.dueDate)}
                           </div>
                           <div className="d-flex align-items-center gap-2">
-                            <span className={`badge ${
-                              assignment.status === 'open' 
-                                ? 'bg-warning' 
-                                : assignment.status === 'completed'
-                                ? 'bg-success'
-                                : 'bg-secondary'
-                            }`}>
-                              {assignment.status}
-                            </span>
                             {assignment.pdfFile && (
                               <a 
                                 href={`http://localhost:5000${assignment.pdfFile}`}

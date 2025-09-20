@@ -169,19 +169,12 @@ function DrillAnnouncementList({ userRole = 'student' }) {
                 <div className="d-flex align-items-start gap-3">
                   <div className="flex-shrink-0">
                     <div className="bg-light rounded-circle d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                      <span style={{ fontSize: '1.2rem' }}>
-                        {getDrillTypeIcon(announcement.drillType)}
-                      </span>
+                      <i className="bi bi-flag text-warning"></i>
                     </div>
                   </div>
                   <div className="flex-grow-1">
                     <div className="d-flex justify-content-between align-items-start mb-1">
                       <h6 className="mb-1 fw-semibold">{announcement.title}</h6>
-                      <div className="d-flex gap-1">
-                        <span className={`badge bg-${getPriorityColor(announcement.priority || 'normal')}-subtle text-${getPriorityColor(announcement.priority || 'normal')}`}>
-                          {getPriorityLabel(announcement.priority || 'normal')}
-                        </span>
-                      </div>
                     </div>
                     <p className="mb-2 text-muted small">{announcement.message}</p>
                     <div className="d-flex justify-content-between align-items-center">
@@ -193,7 +186,7 @@ function DrillAnnouncementList({ userRole = 'student' }) {
                         {formatDate(announcement.sentAt)}
                       </div>
                       <div className="small text-muted">
-                        {getDrillTypeIcon(announcement.drillType)} {announcement.drillType?.charAt(0).toUpperCase() + announcement.drillType?.slice(1)} Drill
+                        {announcement.drillType?.charAt(0).toUpperCase() + announcement.drillType?.slice(1)} Drill
                       </div>
                     </div>
                   </div>

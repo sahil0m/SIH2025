@@ -450,9 +450,7 @@ function Drills() {
                         <div className="d-flex align-items-start gap-3">
                           <div className="flex-shrink-0">
                             <div className="bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                              <span style={{ fontSize: '1.2rem' }}>
-                                {getDrillTypeIcon(drill.drillType)}
-                              </span>
+                              <i className="bi bi-flag text-primary"></i>
                             </div>
                           </div>
                           <div className="flex-grow-1">
@@ -466,11 +464,6 @@ function Drills() {
                                 <i className="bi bi-clock me-1"></i>
                                 {formatDate(drill.createdAt)}
                               </div>
-                              {drill.priority && (
-                                <span className={`badge bg-${getPriorityColor(drill.priority)}`}>
-                                  {drill.priority}
-                                </span>
-                              )}
                             </div>
                           </div>
                         </div>
@@ -570,9 +563,6 @@ function Drills() {
                         </div>
                         <div className="col-md-6">
                           <div className="text-end">
-                            <span className={`badge bg-${getPriorityColor(selectedTeacherDrill.priority)} fs-6`}>
-                              {selectedTeacherDrill.priority || 'normal'}
-                            </span>
                             <p className="text-muted small mt-2 mb-0">
                               <i className="bi bi-clock me-1"></i>
                               {formatDate(selectedTeacherDrill.createdAt)}
