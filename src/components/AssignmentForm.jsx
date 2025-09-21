@@ -86,7 +86,7 @@ function AssignmentForm({ onClose, onAssignmentCreated }) {
       
       // Check if it's a JSON parsing error
       if (error.message.includes('Unexpected token') || error.message.includes('<!DOCTYPE')) {
-        setMessage('Error: Server is not responding properly. Please check if the backend server is running on port 5000.');
+        setMessage('Error: Server is not responding properly. Please check if the backend server is running.');
       } else {
         setMessage(`Error: ${error.message}`);
       }

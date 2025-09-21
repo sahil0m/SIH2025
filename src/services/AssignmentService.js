@@ -57,7 +57,7 @@ class AssignmentService {
         // Check if response is HTML (server error page)
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('text/html')) {
-          throw new Error('Server returned HTML instead of JSON. Please check if the backend server is running on port 5000.');
+          throw new Error('Server returned HTML instead of JSON. Please check if the backend server is running.');
         }
         
         try {
@@ -76,7 +76,7 @@ class AssignmentService {
       
       // Handle network errors
       if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        throw new Error('Cannot connect to server. Please ensure the backend server is running on port 5000.');
+        throw new Error('Cannot connect to server. Please ensure the backend server is running.');
       }
       
       throw error;
