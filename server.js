@@ -257,7 +257,7 @@ app.get('/points/user/:userId', async (req, res) => {
   }
 });
 
-app.get('/api/leaderboard', async (req, res) => {
+app.get('/api/leaderboard', (req, res) => {
   try {
     // Return mock leaderboard data
     const mockLeaderboard = [
@@ -425,7 +425,7 @@ app.post('/api/emergency-alerts', async (req, res) => {
 });
 
 // Statistics routes
-app.get('/api/statistics/user/:userId', async (req, res) => {
+app.get('/api/statistics/user/:userId', (req, res) => {
   try {
     const { userId } = req.params;
     
@@ -433,10 +433,10 @@ app.get('/api/statistics/user/:userId', async (req, res) => {
     res.json({ 
       success: true, 
       data: {
-        modulesCompleted: 0,
-        drillsCompleted: 0,
-        totalPoints: 0,
-        preparednessScore: 0
+        modulesCompleted: 5,
+        drillsCompleted: 3,
+        totalPoints: 150,
+        preparednessScore: 75
       }
     });
 
@@ -446,16 +446,16 @@ app.get('/api/statistics/user/:userId', async (req, res) => {
   }
 });
 
-app.get('/api/statistics/platform', async (req, res) => {
+app.get('/api/statistics/platform', (req, res) => {
   try {
     // Return mock data for now to prevent errors
     res.json({ 
       success: true, 
       data: {
-        totalStudents: 0,
-        totalModulesCompleted: 0,
-        totalDrillsCompleted: 0,
-        averagePreparedness: 0
+        totalStudents: 25,
+        totalModulesCompleted: 120,
+        totalDrillsCompleted: 45,
+        averagePreparedness: 68
       }
     });
 
