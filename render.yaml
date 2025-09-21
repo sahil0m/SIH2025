@@ -10,3 +10,5 @@ services:
         value: production
       - key: PORT
         value: 10000
+      - key: MONGODB_URI
+        value: mongodb+srv://sahildewani75_db_user:Sahil%40123@cluster0.uowncgx.mongodb.net/disaster-prep?retryWrites=true&w=majority&appName=Cluster0
