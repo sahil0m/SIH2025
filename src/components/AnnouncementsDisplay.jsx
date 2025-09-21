@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 import RealtimeService from '../services/RealtimeService';
 
 function AnnouncementsDisplay({ userRole }) {
@@ -34,14 +35,14 @@ function AnnouncementsDisplay({ userRole }) {
       setLoading(true);
       
       // Load drill announcements
-      const drillResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/drill-announcements`);
+      const drillResponse = await fetch(`${API_ENDPOINTS.DRILLS}`);
       const drillData = await drillResponse.json();
       if (drillData.success) {
         setAnnouncements(drillData.data.announcements);
       }
       
       // Load emergency alerts
-      const emergencyResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/emergency-alerts`);
+      const emergencyResponse = await fetch(`${API_ENDPOINTS.ALERTS}`);
       const emergencyData = await emergencyResponse.json();
       if (emergencyData.success) {
         setEmergencyAlerts(emergencyData.data.alerts);

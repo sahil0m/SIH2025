@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import PointsService from '../services/PointsService';
 import VideoProgressTracker from '../components/VideoProgressTracker';
+import { API_ENDPOINTS } from '../config/api';
 
 const SCENARIOS = [
   { id: 'drill-eq', title: 'Earthquake Classroom Drill', steps: ['Drop, Cover, Hold', 'Move to assembly point', 'Headcount & report'] },
@@ -187,11 +188,11 @@ function Drills() {
   const loadTeacherDrills = async () => {
     try {
       // Load drill announcements (these are created by teachers/admins)
-      const drillResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/drill-announcements`);
+      const drillResponse = await fetch(`${API_ENDPOINTS.DRILLS}`);
       const drillData = await drillResponse.json();
       
       // Load confirmed drills
-      const confirmedResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/teacher-actions/confirmed-drills`);
+      const confirmedResponse = await fetch(`${API_ENDPOINTS.TEACHER_ACTIONS}/confirmed-drills`);
       const confirmedData = await confirmedResponse.json();
       
       const drillAnnouncements = drillData.success ? (drillData.data.announcements || []) : [];

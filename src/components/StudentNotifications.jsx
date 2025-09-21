@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 import TeacherActionsService from '../services/TeacherActionsService';
 import AssignmentService from '../services/AssignmentService';
 import RealtimeService from '../services/RealtimeService';
@@ -283,7 +284,7 @@ function StudentNotifications() {
                           <div className="d-flex align-items-center gap-2">
                             {assignment.pdfFile && (
                               <a 
-                                href={`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${assignment.pdfFile}`}
+                                href={`${API_ENDPOINTS.FILES}${assignment.pdfFile}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-outline-primary btn-sm"

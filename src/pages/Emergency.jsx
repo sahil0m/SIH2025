@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 
 const CONTACTS = [
   { label: 'NDMA Helpline', phone: '011-26701700' },
@@ -21,10 +22,10 @@ function Emergency() {
   const fetchRealTimeData = async () => {
     try {
       setLoading(true);
-      const [alertsResponse, drillsResponse] = await Promise.all([
-        fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/emergency-alerts`),
-        fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/drill-announcements`)
-      ]);
+    const [alertsResponse, drillsResponse] = await Promise.all([
+      fetch(`${API_ENDPOINTS.ALERTS}`),
+      fetch(`${API_ENDPOINTS.DRILLS}`)
+    ]);
 
       const alertsData = await alertsResponse.json();
       const drillsData = await drillsResponse.json();

@@ -225,6 +225,38 @@ app.get('/api/points/user/:userId', async (req, res) => {
   }
 });
 
+// Alternative points endpoint for compatibility (without /api prefix)
+app.get('/points/user/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    const UserPoints = mongoose.model('UserPoints', new mongoose.Schema({
+      userId: String,
+      points: Number,
+      source: String,
+      videoId: String,
+      completionPercentage: Number,
+      createdAt: { type: Date, default: Date.now }
+    }));
+
+    const userPoints = await UserPoints.find({ userId }).sort({ createdAt: -1 });
+    const totalPoints = userPoints.reduce((sum, point) => sum + point.points, 0);
+
+    res.json({ 
+      success: true, 
+      data: {
+        userId,
+        totalPoints,
+        points: userPoints
+      }
+    });
+
+  } catch (error) {
+    console.error('Error fetching user points:', error);
+    res.status(500).json({ error: 'Failed to fetch user points' });
+  }
+});
+
 app.get('/api/leaderboard', async (req, res) => {
   try {
     const UserPoints = mongoose.model('UserPoints', new mongoose.Schema({
@@ -647,6 +679,92 @@ io.on('connection', (socket) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
+});
+
+// Statistics API routes
+app.get('/api/statistics/platform', async (req, res) => {
+  try {
+    // Mock platform statistics
+    res.json({
+      totalStudents: 150,
+      totalModulesCompleted: 450,
+      totalDrillsCompleted: 200,
+      averagePreparedness: 75
+    });
+  } catch (error) {
+    console.error('Error fetching platform statistics:', error);
+    res.status(500).json({ error: 'Failed to fetch platform statistics' });
+  }
+});
+
+app.get('/api/statistics/user/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    // Mock user statistics
+    res.json({
+      modulesCompleted: 5,
+      drillsCompleted: 3,
+      totalPoints: 800,
+      preparednessScore: 85
+    });
+  } catch (error) {
+    console.error('Error fetching user statistics:', error);
+    res.status(500).json({ error: 'Failed to fetch user statistics' });
+  }
+});
+
+// Teacher Actions API routes
+app.get('/api/teacher-actions/assigned-modules', async (req, res) => {
+  try {
+    // Mock assigned modules
+    res.json([]);
+  } catch (error) {
+    console.error('Error fetching assigned modules:', error);
+    res.status(500).json({ error: 'Failed to fetch assigned modules' });
+  }
+});
+
+app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
+  try {
+    // Mock confirmed drills
+    res.json([]);
+  } catch (error) {
+    console.error('Error fetching confirmed drills:', error);
+    res.status(500).json({ error: 'Failed to fetch confirmed drills' });
+  }
+});
+
+// Assignment API routes
+app.get('/api/assignments', async (req, res) => {
+  try {
+    // Mock assignments
+    res.json([]);
+  } catch (error) {
+    console.error('Error fetching assignments:', error);
+    res.status(500).json({ error: 'Failed to fetch assignments' });
+  }
+});
+
+app.post('/api/assignments', async (req, res) => {
+  try {
+    const { title, description, dueDate, pdfFile } = req.body;
+    
+    // Mock assignment creation
+    const assignment = {
+      id: Date.now().toString(),
+      title,
+      description,
+      dueDate,
+      pdfFile,
+      createdAt: new Date().toISOString()
+    };
+    
+    res.json({ success: true, assignment });
+  } catch (error) {
+    console.error('Error creating assignment:', error);
+    res.status(500).json({ error: 'Failed to create assignment' });
+  }
 });
 
 // 404 handler - catch all unmatched routes

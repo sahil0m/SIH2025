@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 
 function RealTimeCommunication({ userRole, onSendDrillAnnouncement, onSendEmergencyAlert }) {
   const [drillMessage, setDrillMessage] = useState('');
@@ -10,7 +11,7 @@ function RealTimeCommunication({ userRole, onSendDrillAnnouncement, onSendEmerge
     
     setIsSending(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/drill-announcements`, {
+      const response = await fetch(`${API_ENDPOINTS.DRILLS}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -44,7 +45,7 @@ function RealTimeCommunication({ userRole, onSendDrillAnnouncement, onSendEmerge
     
     setIsSending(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/emergency-alerts`, {
+      const response = await fetch(`${API_ENDPOINTS.ALERTS}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

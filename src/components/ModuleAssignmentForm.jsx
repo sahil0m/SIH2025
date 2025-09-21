@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 import TeacherActionsService from '../services/TeacherActionsService';
 import { getCurrentUser } from '../services/AuthService';
 
@@ -111,7 +112,7 @@ function ModuleAssignmentForm({ onClose, onSuccess }) {
     formData.append('file', file);
     formData.append('type', fileType);
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/upload`, {
+    const response = await fetch(`${API_ENDPOINTS.UPLOAD}`, {
       method: 'POST',
       body: formData
     });

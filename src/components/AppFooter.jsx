@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_ENDPOINTS } from '../config/api';
 
 function AppFooter() {
   const [email, setEmail] = useState('');
@@ -18,9 +19,9 @@ function AppFooter() {
 
     try {
       console.log('Attempting to subscribe email:', email);
-      console.log('Making request to:', `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/mailing-list/subscribe`);
+      console.log('Making request to:', `${API_ENDPOINTS.MAILING}/subscribe`);
       
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/mailing-list/subscribe`, {
+      const response = await fetch(`${API_ENDPOINTS.MAILING}/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React, { useMemo, useState, useRef, useEffect } from 'react';
 import StudentModulesDisplay from '../components/StudentModulesDisplay';
 import AssignmentService from '../services/AssignmentService';
 import PointsService from '../services/PointsService';
+import { API_ENDPOINTS } from '../config/api';
 
 const CATEGORIES = [
   { id: 'earthquake', name: 'Earthquake' },
@@ -430,7 +431,7 @@ function Learn() {
     setSelectedAssignment({
       ...assignment,
       currentFile: {
-        url: `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${fileUrl}`,
+        url: `${API_ENDPOINTS.FILES}${fileUrl}`,
         originalName: 'Assignment PDF',
         size: 0,
         type: fileType
