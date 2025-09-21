@@ -298,7 +298,7 @@ function StudentNotifications() {
                     </div>
                   </div>
                 ))}
-                {assignments.length > 2 && (
+                {assignments && assignments.length > 2 && (
                   <div className="text-center mt-3">
                     <button 
                       className="btn btn-outline-info btn-sm"
@@ -312,7 +312,7 @@ function StudentNotifications() {
                       ) : (
                         <>
                           <i className="bi bi-chevron-down me-1"></i>
-                          Show More ({assignments.length - 2} more)
+                          Show More ({(assignments?.length || 0) - 2} more)
                         </>
                       )}
                     </button>

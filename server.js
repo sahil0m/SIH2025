@@ -743,7 +743,12 @@ app.get('/statistics/user/:userId', async (req, res) => {
 app.get('/api/teacher-actions/assigned-modules', async (req, res) => {
   try {
     // Mock assigned modules
-    res.json([]);
+    res.json({
+      success: true,
+      data: {
+        modules: []
+      }
+    });
   } catch (error) {
     console.error('Error fetching assigned modules:', error);
     res.status(500).json({ error: 'Failed to fetch assigned modules' });
@@ -753,7 +758,12 @@ app.get('/api/teacher-actions/assigned-modules', async (req, res) => {
 app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
   try {
     // Mock confirmed drills
-    res.json([]);
+    res.json({
+      success: true,
+      data: {
+        drills: []
+      }
+    });
   } catch (error) {
     console.error('Error fetching confirmed drills:', error);
     res.status(500).json({ error: 'Failed to fetch confirmed drills' });
