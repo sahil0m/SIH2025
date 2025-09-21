@@ -93,7 +93,7 @@ class PointsService {
   // Get user's total points
   async getUserPoints(userId) {
     try {
-      const response = await this.request(`/points/user/${userId}`);
+      const response = await this.request(`/user/${userId}`);
       return response.data;
     } catch (error) {
       console.error('Failed to get user points:', error);
@@ -104,7 +104,7 @@ class PointsService {
   // Get points for a specific video
   async getVideoPoints(userId, videoId) {
     try {
-      const response = await this.request(`/points/video/${userId}/${videoId}`);
+      const response = await this.request(`/video/${userId}/${videoId}`);
       return response.data;
     } catch (error) {
       console.error('Failed to get video points:', error);

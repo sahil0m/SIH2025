@@ -33,7 +33,7 @@ class StatisticsService {
   // Get user statistics
   async getUserStatistics(userId) {
     try {
-      const response = await this.request(`/statistics/user/${userId}`);
+      const response = await this.request(`/user/${userId}`);
       return response.data;
     } catch (error) {
       console.error('Failed to get user statistics:', error);
@@ -50,7 +50,7 @@ class StatisticsService {
   // Get overall platform statistics
   async getPlatformStatistics() {
     try {
-      const response = await this.request('/statistics/platform');
+      const response = await this.request('/platform');
       return response.data;
     } catch (error) {
       console.error('Failed to get platform statistics:', error);
