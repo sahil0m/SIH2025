@@ -17,10 +17,12 @@ const io = new Server(server, {
   cors: {
     origin: [
       "http://localhost:3000",
+      "http://localhost:5000",
       "http://localhost:5001",
       "https://sih-2025.vercel.app" // Only allow your deployed Vercel frontend
     ],
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
@@ -28,6 +30,7 @@ const io = new Server(server, {
 app.use(cors({
   origin: [
     'http://localhost:3000',
+    'http://localhost:5000',
     'http://localhost:5001',
     'https://sih-2025.vercel.app' // Only allow your deployed Vercel frontend
   ],
