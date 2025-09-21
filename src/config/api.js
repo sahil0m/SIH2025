@@ -1,9 +1,9 @@
 // API Configuration
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://disaster-prep-backend.onrender.com';
 
-// Force the correct URL for production
+// Force the correct URL for production - always use Render backend
 const PRODUCTION_API_URL = 'https://disaster-prep-backend.onrender.com';
-const FINAL_API_URL = API_BASE_URL.includes('localhost') ? PRODUCTION_API_URL : API_BASE_URL;
+const FINAL_API_URL = PRODUCTION_API_URL;
 
 // Debug log to check environment variable
 console.log('🚀 API_BASE_URL:', API_BASE_URL);

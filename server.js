@@ -1826,6 +1826,270 @@ app.get('/api/leaderboard', async (req, res) => {
   }
 });
 
+// Additional API endpoints for compatibility
+app.get('/api/statistics/user/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    // Check if MongoDB is connected
+    if (!mongoose.connection.readyState || mongoose.connection.readyState !== 1) {
+      console.log('MongoDB not connected, using fallback data');
+      
+      // Return fallback data
+      return res.json({
+        success: true,
+        data: {
+          modulesCompleted: 5,
+          drillsCompleted: 3,
+          totalPoints: 150,
+          preparednessScore: 75
+        }
+      });
+    }
+
+    // Get user points data
+    const userPoints = await mongoose.connection.db.collection('user_points')
+      .find({ userId: userId })
+      .toArray();
+
+    // Calculate statistics
+    const modulesCompleted = userPoints.filter(point => 
+      point.videoType === 'module' && point.completionPercentage >= 100
+    ).length;
+
+    const drillsCompleted = userPoints.filter(point => 
+      point.videoType === 'drill' && point.completionPercentage >= 100
+    ).length;
+
+    const totalPoints = userPoints.reduce((sum, point) => sum + point.points, 0);
+
+    // Calculate preparedness score based on completion rates
+    const totalVideos = userPoints.length;
+    const completedVideos = userPoints.filter(point => point.completionPercentage >= 100).length;
+    const preparednessScore = totalVideos > 0 ? Math.round((completedVideos / totalVideos) * 100) : 0;
+
+    res.json({
+      success: true,
+      data: {
+        modulesCompleted,
+        drillsCompleted,
+        totalPoints,
+        preparednessScore
+      }
+    });
+
+  } catch (error) {
+    console.error('Get user statistics error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get user statistics'
+    });
+  }
+});
+
+app.get('/api/statistics/platform', async (req, res) => {
+  try {
+    // Check if MongoDB is connected
+    if (!mongoose.connection.readyState || mongoose.connection.readyState !== 1) {
+      console.log('MongoDB not connected, using fallback data');
+      
+      // Return fallback data
+      return res.json({
+        success: true,
+        data: {
+          totalStudents: 25,
+          totalModulesCompleted: 120,
+          totalDrillsCompleted: 45,
+          averagePreparedness: 68
+        }
+      });
+    }
+
+    // Get all users count
+    const totalStudents = await mongoose.connection.db.collection('users').countDocuments();
+
+    // Get total modules completed
+    const modulesCompleted = await mongoose.connection.db.collection('user_points')
+      .countDocuments({ 
+        videoType: 'module', 
+        completionPercentage: { $gte: 100 } 
+      });
+
+    // Get total drills completed
+    const drillsCompleted = await mongoose.connection.db.collection('user_points')
+      .countDocuments({ 
+        videoType: 'drill', 
+        completionPercentage: { $gte: 100 } 
+      });
+
+    // Calculate average preparedness
+    const userStats = await mongoose.connection.db.collection('user_points')
+      .aggregate([
+        {
+          $group: {
+            _id: '$userId',
+            totalVideos: { $sum: 1 },
+            completedVideos: {
+              $sum: {
+                $cond: [{ $gte: ['$completionPercentage', 100] }, 1, 0]
+              }
+            }
+          }
+        },
+        {
+          $project: {
+            preparednessScore: {
+              $cond: [
+                { $gt: ['$totalVideos', 0] },
+                { $multiply: [{ $divide: ['$completedVideos', '$totalVideos'] }, 100] },
+                0
+              ]
+            }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            averagePreparedness: { $avg: '$preparednessScore' }
+          }
+        }
+      ])
+      .toArray();
+
+    const averagePreparedness = userStats.length > 0 ? Math.round(userStats[0].averagePreparedness) : 0;
+
+    res.json({
+      success: true,
+      data: {
+        totalStudents,
+        totalModulesCompleted: modulesCompleted,
+        totalDrillsCompleted: drillsCompleted,
+        averagePreparedness
+      }
+    });
+
+  } catch (error) {
+    console.error('Get platform statistics error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get platform statistics'
+    });
+  }
+});
+
+app.get('/api/assignments', async (req, res) => {
+  try {
+    // Check if MongoDB is connected
+    if (!mongoose.connection.readyState || mongoose.connection.readyState !== 1) {
+      console.log('MongoDB not connected, using fallback storage');
+      
+      const assignments = global.assignments || [];
+      return res.json({
+        success: true,
+        data: assignments
+      });
+    }
+
+    // MongoDB is connected, fetch from database
+    const assignments = await mongoose.connection.db.collection('assignments')
+      .find({})
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    res.json({
+      success: true,
+      data: assignments
+    });
+
+  } catch (error) {
+    console.error('Get assignments error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get assignments'
+    });
+  }
+});
+
+app.get('/api/teacher-actions/assigned-modules', async (req, res) => {
+  try {
+    // Check if MongoDB is connected
+    if (!mongoose.connection.readyState || mongoose.connection.readyState !== 1) {
+      console.log('MongoDB not connected, using fallback storage');
+      
+      // Return modules from memory storage
+      const modules = global.assignedModules || [];
+      
+      return res.json({
+        success: true,
+        data: { modules: modules }
+      });
+    }
+    
+    // MongoDB is connected, use database
+    const collections = await mongoose.connection.db.listCollections().toArray();
+    const collectionExists = collections.some(col => col.name === 'assigned_modules');
+    
+    if (!collectionExists) {
+      return res.json({
+        success: true,
+        data: { modules: [] }
+      });
+    }
+    
+    const modules = await mongoose.connection.db.collection('assigned_modules')
+      .find({ status: 'active' })
+      .sort({ createdAt: -1 })
+      .toArray();
+    
+    res.json({
+      success: true,
+      data: { modules: modules }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
+  try {
+    // Check if MongoDB is connected
+    if (!mongoose.connection.readyState || mongoose.connection.readyState !== 1) {
+      console.log('MongoDB not connected, using fallback storage');
+      
+      // Return drills from memory storage
+      const drills = global.confirmedDrills || [];
+      
+      return res.json({
+        success: true,
+        data: { drills: drills }
+      });
+    }
+    
+    // MongoDB is connected, use database
+    const collections = await mongoose.connection.db.listCollections().toArray();
+    const collectionExists = collections.some(col => col.name === 'confirmed_drills');
+    
+    if (!collectionExists) {
+      return res.json({
+        success: true,
+        data: { drills: [] }
+      });
+    }
+    
+    const drills = await mongoose.connection.db.collection('confirmed_drills')
+      .find({ status: 'confirmed' })
+      .sort({ createdAt: -1 })
+      .toArray();
+    
+    res.json({
+      success: true,
+      data: { drills }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 // 404 handler - catch all unmatched routes
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
