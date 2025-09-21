@@ -709,6 +709,36 @@ app.get('/api/statistics/user/:userId', async (req, res) => {
   }
 });
 
+// Alternative statistics routes without /api prefix
+app.get('/statistics/platform', async (req, res) => {
+  try {
+    res.json({
+      totalStudents: 150,
+      totalModulesCompleted: 450,
+      totalDrillsCompleted: 200,
+      averagePreparedness: 75
+    });
+  } catch (error) {
+    console.error('Error fetching platform statistics:', error);
+    res.status(500).json({ error: 'Failed to fetch platform statistics' });
+  }
+});
+
+app.get('/statistics/user/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    res.json({
+      modulesCompleted: 5,
+      drillsCompleted: 3,
+      totalPoints: 800,
+      preparednessScore: 85
+    });
+  } catch (error) {
+    console.error('Error fetching user statistics:', error);
+    res.status(500).json({ error: 'Failed to fetch user statistics' });
+  }
+});
+
 // Teacher Actions API routes
 app.get('/api/teacher-actions/assigned-modules', async (req, res) => {
   try {
@@ -757,6 +787,21 @@ app.get('/assignments', async (req, res) => {
   } catch (error) {
     console.error('Error fetching assignments:', error);
     res.status(500).json({ error: 'Failed to fetch assignments' });
+  }
+});
+
+// Drill announcements route
+app.get('/api/drill-announcements', async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      data: {
+        announcements: []
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching drill announcements:', error);
+    res.status(500).json({ error: 'Failed to fetch drill announcements' });
   }
 });
 

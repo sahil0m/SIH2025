@@ -66,9 +66,9 @@ function StudentNotifications() {
       console.log('Setting assigned modules:', modules);
       console.log('Setting confirmed drills:', drills);
       console.log('Setting assignments:', assignments);
-      setAssignedModules(modules);
-      setConfirmedDrills(drills);
-      setAssignments(assignments);
+      setAssignedModules(modules || []);
+      setConfirmedDrills(drills || []);
+      setAssignments(assignments || []);
     } catch (error) {
       console.error('Error loading student notifications:', error);
     } finally {
@@ -253,14 +253,14 @@ function StudentNotifications() {
             </h6>
           </div>
           <div className="card-body">
-            {assignments.length === 0 ? (
+            {!assignments || assignments.length === 0 ? (
               <div className="text-center py-3">
                 <i className="bi bi-clipboard text-muted" style={{ fontSize: '2rem' }}></i>
                 <p className="text-muted mt-2 mb-0">No assignments yet</p>
               </div>
             ) : (
               <div className="list-group list-group-flush">
-                {(showAllAssignments ? assignments : assignments.slice(0, 2)).map((assignment, index) => (
+                {assignments && (showAllAssignments ? assignments : assignments.slice(0, 2)).map((assignment, index) => (
                   <div key={assignment._id || index} className="list-group-item border-0 px-0">
                     <div className="d-flex align-items-start gap-3">
                       <div className="flex-shrink-0">
