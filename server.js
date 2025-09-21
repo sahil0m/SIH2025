@@ -2089,7 +2089,121 @@ app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+// Add these routes to your server.js file, around line 800 (before the 404 handler)
 
+// MISSING ROUTES - Add these to fix the 404 errors
+
+// Fix for /points/user/:userId endpoint 
+app.get('/points/user/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    // Check if MongoDB is connected
+    if (!mongoose.connection.readyState || mongoose.connection.readyState !== 1) {
+      console.log('MongoDB not connected, using fallback storage');
+      
+      const userPoints = global.userPoints?.filter(entry => entry.userId === userId) || [];
+      const totalPoints = userPoints.reduce((sum, entry) => sum + entry.points, 0);
+      
+      return res.json({
+        success: true,
+        data: { totalPoints, videosWatched: userPoints.length }
+      });
+    }
+
+    // MongoDB is connected, use database
+    const collections = await mongoose.connection.db.listCollections().toArray();
+    const collectionExists = collections.some(col => col.name === 'user_points');
+    
+    if (!collectionExists) {
+      return res.json({
+        success: true,
+        data: { totalPoints: 0, videosWatched: 0 }
+      });
+    }
+    
+    const userPoints = await mongoose.connection.db.collection('user_points')
+      .find({ userId: userId })
+      .toArray();
+    
+    const totalPoints = userPoints.reduce((sum, entry) => sum + entry.points, 0);
+    
+    res.json({
+      success: true,
+      data: { totalPoints, videosWatched: userPoints.length }
+    });
+    
+  } catch (error) {
+    console.error('Get user points error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get user points'
+    });
+  }
+});
+
+// Fix for /points/video/:userId/:videoId endpoint
+app.get('/points/video/:userId/:videoId', async (req, res) => {
+  try {
+    const { userId, videoId } = req.params;
+    
+    if (!mongoose.connection.readyState || mongoose.connection.readyState !== 1) {
+      console.log('MongoDB not connected, using fallback storage');
+      
+      const userPoints = global.userPoints?.filter(entry => entry.userId === userId && entry.videoId === videoId) || [];
+      const totalPoints = userPoints.reduce((sum, entry) => sum + entry.points, 0);
+      const maxCompletion = Math.max(...userPoints.map(entry => entry.completionPercentage), 0);
+      
+      return res.json({
+        success: true,
+        data: { points: totalPoints, completionPercentage: maxCompletion }
+      });
+    }
+
+    const collections = await mongoose.connection.db.listCollections().toArray();
+    const collectionExists = collections.some(col => col.name === 'user_points');
+    
+    if (!collectionExists) {
+      return res.json({
+        success: true,
+        data: { points: 0, completionPercentage: 0 }
+      });
+    }
+    
+    const userPoints = await mongoose.connection.db.collection('user_points')
+      .find({ userId: userId, videoId: videoId })
+      .toArray();
+    
+    const totalPoints = userPoints.reduce((sum, entry) => sum + entry.points, 0);
+    const maxCompletion = Math.max(...userPoints.map(entry => entry.completionPercentage), 0);
+    
+    res.json({
+      success: true,
+      data: { points: totalPoints, completionPercentage: maxCompletion }
+    });
+    
+  } catch (error) {
+    console.error('Get video points error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get video points'
+    });
+  }
+});
+
+// Fix for /points/award endpoint (already exists at /api/points/award, but adding alias)
+app.post('/points/award', async (req, res) => {
+  // Redirect to the existing endpoint
+  req.url = '/api/points/award';
+  app._router.handle(req, res);
+});
+
+// Fix for /leaderboard endpoint
+app.get('/leaderboard', async (req, res) => {
+  // Redirect to the existing endpoint
+  req.url = '/api/leaderboard';
+  app._router.handle(req, res);
+});
 // 404 handler - catch all unmatched routes
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
