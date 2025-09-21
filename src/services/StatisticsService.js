@@ -1,9 +1,11 @@
 // Statistics Service for fetching user dashboard data
 import { getCurrentUser } from './AuthService';
 
+import { API_ENDPOINTS } from '../config/api';
+
 class StatisticsService {
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    this.baseURL = API_ENDPOINTS.STATISTICS;
   }
 
   async request(endpoint, options = {}) {

@@ -1,7 +1,9 @@
 // Assignment Service for managing assignments
+import { API_ENDPOINTS } from '../config/api';
+
 class AssignmentService {
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    this.baseURL = API_ENDPOINTS.ASSIGNMENTS;
   }
 
   async request(endpoint, options = {}) {

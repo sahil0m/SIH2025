@@ -430,7 +430,7 @@ function Learn() {
     setSelectedAssignment({
       ...assignment,
       currentFile: {
-        url: `http://localhost:5000${fileUrl}`,
+        url: `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${fileUrl}`,
         originalName: 'Assignment PDF',
         size: 0,
         type: fileType

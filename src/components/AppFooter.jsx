@@ -18,9 +18,9 @@ function AppFooter() {
 
     try {
       console.log('Attempting to subscribe email:', email);
-      console.log('Making request to: http://localhost:5000/api/mailing-list/subscribe');
+      console.log('Making request to:', `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/mailing-list/subscribe`);
       
-      const response = await fetch('http://localhost:5000/api/mailing-list/subscribe', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/mailing-list/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

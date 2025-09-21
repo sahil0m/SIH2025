@@ -1,9 +1,11 @@
 // Points Service for managing user points and leaderboard
 import { getCurrentUser } from './AuthService';
 
+import { API_ENDPOINTS } from '../config/api';
+
 class PointsService {
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    this.baseURL = API_ENDPOINTS.POINTS;
   }
 
   async request(endpoint, options = {}) {

@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import { API_ENDPOINTS } from '../config/api';
 
 class RealtimeService {
   constructor() {
@@ -8,7 +9,7 @@ class RealtimeService {
 
   connect() {
     if (!this.socket) {
-      this.socket = io('http://localhost:5000');
+      this.socket = io(API_ENDPOINTS.SOCKET);
       
       this.socket.on('connect', () => {
         console.log('✅ Connected to real-time server');

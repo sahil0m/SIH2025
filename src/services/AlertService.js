@@ -1,9 +1,10 @@
 // Alert Service for MongoDB backend integration
 // This service handles all alert-related operations
+import { API_ENDPOINTS } from '../config/api';
 
 class AlertService {
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    this.baseURL = API_ENDPOINTS.ALERTS;
     this.token = localStorage.getItem('token');
   }
 

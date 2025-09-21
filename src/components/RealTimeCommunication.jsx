@@ -10,7 +10,7 @@ function RealTimeCommunication({ userRole, onSendDrillAnnouncement, onSendEmerge
     
     setIsSending(true);
     try {
-      const response = await fetch('http://localhost:5000/api/drill-announcements', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/drill-announcements`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ function RealTimeCommunication({ userRole, onSendDrillAnnouncement, onSendEmerge
     
     setIsSending(true);
     try {
-      const response = await fetch('http://localhost:5000/api/emergency-alerts', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/emergency-alerts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

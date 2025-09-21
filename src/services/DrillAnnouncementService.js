@@ -1,9 +1,10 @@
 // Mock service for drill announcements
 // In production, this would connect to your MongoDB backend
+import { API_ENDPOINTS } from '../config/api';
 
 class DrillAnnouncementService {
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    this.baseURL = API_ENDPOINTS.DRILLS;
     this.token = localStorage.getItem('token');
   }
 

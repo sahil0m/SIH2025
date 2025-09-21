@@ -15,13 +15,26 @@ const server = createServer(app);
 // Socket.io setup
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:5001"],
+    origin: [
+      "http://localhost:3000", 
+      "http://localhost:5001",
+      "https://*.vercel.app",
+      "https://sih-2025.vercel.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5001',
+    'https://*.vercel.app',
+    'https://sih-2025.vercel.app'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Root endpoint

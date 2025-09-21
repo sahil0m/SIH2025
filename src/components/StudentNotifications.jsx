@@ -283,7 +283,7 @@ function StudentNotifications() {
                           <div className="d-flex align-items-center gap-2">
                             {assignment.pdfFile && (
                               <a 
-                                href={`http://localhost:5000${assignment.pdfFile}`}
+                                href={`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${assignment.pdfFile}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-outline-primary btn-sm"
