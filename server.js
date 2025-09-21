@@ -503,6 +503,127 @@ app.post('/api/mailing-list/subscribe', async (req, res) => {
   }
 });
 
+// Teacher actions routes
+app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
+  try {
+    const ConfirmedDrill = mongoose.model('ConfirmedDrill', new mongoose.Schema({
+      drillType: String,
+      date: String,
+      time: String,
+      venue: String,
+      teacherId: String,
+      teacherName: String,
+      createdAt: { type: Date, default: Date.now }
+    }));
+
+    const drills = await ConfirmedDrill.find().sort({ createdAt: -1 });
+
+    res.json({ 
+      success: true, 
+      data: { drills }
+    });
+
+  } catch (error) {
+    console.error('Error fetching confirmed drills:', error);
+    res.status(500).json({ error: 'Failed to fetch confirmed drills' });
+  }
+});
+
+app.post('/api/teacher-actions/confirmed-drills', async (req, res) => {
+  try {
+    const drillData = req.body;
+    
+    const ConfirmedDrill = mongoose.model('ConfirmedDrill', new mongoose.Schema({
+      drillType: String,
+      date: String,
+      time: String,
+      venue: String,
+      teacherId: String,
+      teacherName: String,
+      createdAt: { type: Date, default: Date.now }
+    }));
+
+    const drill = new ConfirmedDrill(drillData);
+    await drill.save();
+
+    res.json({ 
+      success: true, 
+      message: 'Drill confirmed successfully',
+      data: drill
+    });
+
+  } catch (error) {
+    console.error('Error confirming drill:', error);
+    res.status(500).json({ error: 'Failed to confirm drill' });
+  }
+});
+
+// Assignment routes
+app.get('/api/assignments', async (req, res) => {
+  try {
+    const Assignment = mongoose.model('Assignment', new mongoose.Schema({
+      title: String,
+      description: String,
+      dueDate: Date,
+      pdfFile: String,
+      teacherId: String,
+      teacherName: String,
+      createdAt: { type: Date, default: Date.now },
+      status: String
+    }));
+
+    const assignments = await Assignment.find().sort({ createdAt: -1 });
+
+    res.json({ 
+      success: true, 
+      data: { assignments }
+    });
+
+  } catch (error) {
+    console.error('Error fetching assignments:', error);
+    res.status(500).json({ error: 'Failed to fetch assignments' });
+  }
+});
+
+app.post('/api/assignments', async (req, res) => {
+  try {
+    const assignmentData = req.body;
+    
+    const Assignment = mongoose.model('Assignment', new mongoose.Schema({
+      title: String,
+      description: String,
+      dueDate: Date,
+      pdfFile: String,
+      teacherId: String,
+      teacherName: String,
+      createdAt: { type: Date, default: Date.now },
+      status: String
+    }));
+
+    const assignment = new Assignment(assignmentData);
+    await assignment.save();
+
+    res.json({ 
+      success: true, 
+      message: 'Assignment created successfully',
+      data: assignment
+    });
+
+  } catch (error) {
+    console.error('Error creating assignment:', error);
+    res.status(500).json({ error: 'Failed to create assignment' });
+  }
+});
+
+// Test endpoint
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'Backend is working!', 
+    timestamp: new Date().toISOString(),
+    mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+  });
+});
+
 // Socket.io connection handling
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
@@ -518,8 +639,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// 404 handler
-app.use('/*', (req, res) => {
+// 404 handler - catch all unmatched routes
+app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
