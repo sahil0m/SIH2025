@@ -43,9 +43,10 @@ class AssignmentService {
         formData.append('pdfFile', assignmentData.pdfFile);
       }
 
-      console.log('Sending assignment data to:', `${this.baseURL}/assignments/create`);
+      // FIXED: Use /create endpoint instead of /assignments/create
+      console.log('Sending assignment data to:', `${this.baseURL}/create`);
       
-      const response = await fetch(`${this.baseURL}/assignments/create`, {
+      const response = await fetch(`${this.baseURL}/create`, {
         method: 'POST',
         body: formData
       });
@@ -83,7 +84,7 @@ class AssignmentService {
     }
   }
 
-  // Get all assignments
+  // Get all assignments - FIXED: Use empty endpoint since baseURL already has /api/assignments
   async getAllAssignments() {
     try {
       const response = await this.request('');
@@ -112,10 +113,10 @@ class AssignmentService {
     }
   }
 
-  // Get assignments by class
+  // Get assignments by class - FIXED: Use /class/:classId endpoint
   async getAssignmentsByClass(classId) {
     try {
-      const response = await this.request(`/assignments/class/${classId}`);
+      const response = await this.request(`/class/${classId}`);
       return response.data;
     } catch (error) {
       console.error('Failed to get assignments by class:', error);
@@ -123,10 +124,10 @@ class AssignmentService {
     }
   }
 
-  // Update assignment status
+  // Update assignment status - FIXED: Use correct endpoint path
   async updateAssignmentStatus(assignmentId, status) {
     try {
-      const response = await this.request(`/assignments/${assignmentId}/status`, {
+      const response = await this.request(`/${assignmentId}/status`, {
         method: 'PUT',
         body: JSON.stringify({ status })
       });

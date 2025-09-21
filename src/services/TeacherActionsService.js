@@ -32,10 +32,10 @@ class TeacherActionsService {
     }
   }
 
-  // Assign module to classes
+  // Assign module to classes - FIXED: Removed duplicate /teacher-actions path
   async assignModule(moduleData) {
     try {
-      const response = await this.request('/teacher-actions/assign-module', {
+      const response = await this.request('/assign-module', {
         method: 'POST',
         body: JSON.stringify(moduleData)
       });
@@ -49,10 +49,10 @@ class TeacherActionsService {
     }
   }
 
-  // Confirm drill slot
+  // Confirm drill slot - FIXED: Removed duplicate /teacher-actions path
   async confirmDrill(drillData) {
     try {
-      const response = await this.request('/teacher-actions/confirm-drill', {
+      const response = await this.request('/confirm-drill', {
         method: 'POST',
         body: JSON.stringify(drillData)
       });
