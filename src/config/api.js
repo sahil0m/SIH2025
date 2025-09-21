@@ -5,6 +5,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://disaster-prep-bac
 console.log('🚀 API_BASE_URL:', API_BASE_URL);
 console.log('🔧 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
 console.log('📅 Deployment timestamp:', new Date().toISOString());
+console.log('🔄 Force deployment:', Math.random());
 
 export const API_ENDPOINTS = {
   // Auth endpoints
