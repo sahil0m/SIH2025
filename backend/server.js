@@ -16,10 +16,9 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      "http://localhost:3000", 
+      "http://localhost:3000",
       "http://localhost:5001",
-      "https://*.vercel.app",
-      "https://sih-2025.vercel.app"
+      "https://sih-2025.vercel.app" // Only allow your deployed Vercel frontend
     ],
     methods: ["GET", "POST"]
   }
@@ -30,8 +29,7 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:5001',
-    'https://*.vercel.app',
-    'https://sih-2025.vercel.app'
+    'https://sih-2025.vercel.app' // Only allow your deployed Vercel frontend
   ],
   credentials: true
 }));
