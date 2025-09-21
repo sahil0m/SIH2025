@@ -728,6 +728,115 @@ app.use((err, req, res, next) => {
 });
 
 
+// Additional missing API routes
+app.get('/api/points/video/:userId/:videoId', async (req, res) => {
+  try {
+    const { userId, videoId } = req.params;
+    
+    // Return mock data for video points
+    res.json({
+      success: true,
+      data: {
+        userId,
+        videoId,
+        points: 0,
+        completed: false,
+        completionPercentage: 0
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching video points:', error);
+    res.status(500).json({ error: 'Failed to fetch video points' });
+  }
+});
+
+app.get('/api/leaderboard', async (req, res) => {
+  try {
+    const { limit = 50 } = req.query;
+    
+    // Return mock leaderboard data
+    const mockLeaderboard = [
+      { userId: 'Sahil dewani', totalPoints: 150, videosWatched: 3 },
+      { userId: 'John Doe', totalPoints: 100, videosWatched: 2 },
+      { userId: 'Jane Smith', totalPoints: 75, videosWatched: 1 }
+    ];
+    
+    res.json({
+      success: true,
+      data: mockLeaderboard.slice(0, parseInt(limit))
+    });
+  } catch (error) {
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ error: 'Failed to fetch leaderboard' });
+  }
+});
+
+app.get('/api/alerts/stats', async (req, res) => {
+  try {
+    // Return mock alert stats
+    res.json({
+      success: true,
+      data: {
+        totalAlerts: 5,
+        activeAlerts: 2,
+        resolvedAlerts: 3,
+        highPriority: 1,
+        mediumPriority: 2,
+        lowPriority: 2
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching alert stats:', error);
+    res.status(500).json({ error: 'Failed to fetch alert stats' });
+  }
+});
+
+app.get('/api/alerts', async (req, res) => {
+  try {
+    const { region, alertType, severity, page = 1, limit = 10 } = req.query;
+    
+    // Return mock alerts data
+    const mockAlerts = [
+      {
+        _id: 'alert-1',
+        title: 'Earthquake Alert',
+        description: 'Moderate earthquake detected in your region',
+        alertType: 'earthquake',
+        severity: 'medium',
+        region: 'Delhi',
+        isActive: true,
+        createdAt: new Date().toISOString()
+      },
+      {
+        _id: 'alert-2',
+        title: 'Flood Warning',
+        description: 'Heavy rainfall expected, flood warning issued',
+        alertType: 'flood',
+        severity: 'high',
+        region: 'Mumbai',
+        isActive: true,
+        createdAt: new Date().toISOString()
+      }
+    ];
+    
+    res.json({
+      success: true,
+      data: {
+        alerts: mockAlerts,
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total: mockAlerts.length,
+          pages: Math.ceil(mockAlerts.length / parseInt(limit))
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching alerts:', error);
+    res.status(500).json({ error: 'Failed to fetch alerts' });
+  }
+});
+
 // 404 handler - catch all unmatched routes
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });

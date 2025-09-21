@@ -1,47 +1,51 @@
 // API Configuration
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://disaster-prep-backend.onrender.com';
 
+// Force the correct URL for production
+const PRODUCTION_API_URL = 'https://disaster-prep-backend.onrender.com';
+const FINAL_API_URL = API_BASE_URL.includes('localhost') ? PRODUCTION_API_URL : API_BASE_URL;
+
 // Debug log to check environment variable
 console.log('🚀 API_BASE_URL:', API_BASE_URL);
 console.log('🔧 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+console.log('🌐 FINAL_API_URL:', FINAL_API_URL);
 console.log('📅 Deployment timestamp:', new Date().toISOString());
 console.log('🔄 Force deployment:', Math.random());
 console.log('🌐 Current origin:', window.location.origin);
-console.log('🔍 All env vars:', process.env);
 
 export const API_ENDPOINTS = {
   // Auth endpoints
-  AUTH: `${API_BASE_URL}/api/auth`,
+  AUTH: `${FINAL_API_URL}/api/auth`,
   
   // Points endpoints
-  POINTS: `${API_BASE_URL}/api/points`,
+  POINTS: `${FINAL_API_URL}/api/points`,
   
   // Statistics endpoints
-  STATISTICS: `${API_BASE_URL}/api/statistics`,
+  STATISTICS: `${FINAL_API_URL}/api/statistics`,
   
   // Alert endpoints
-  ALERTS: `${API_BASE_URL}/api/emergency-alerts`,
+  ALERTS: `${FINAL_API_URL}/api/emergency-alerts`,
   
   // Drill endpoints
-  DRILLS: `${API_BASE_URL}/api/drill-announcements`,
+  DRILLS: `${FINAL_API_URL}/api/drill-announcements`,
   
   // Teacher actions endpoints
-  TEACHER_ACTIONS: `${API_BASE_URL}/api/teacher-actions`,
+  TEACHER_ACTIONS: `${FINAL_API_URL}/api/teacher-actions`,
   
   // Assignment endpoints
-  ASSIGNMENTS: `${API_BASE_URL}/api/assignments`,
+  ASSIGNMENTS: `${FINAL_API_URL}/api/assignments`,
   
   // Upload endpoints
-  UPLOAD: `${API_BASE_URL}/api/upload`,
+  UPLOAD: `${FINAL_API_URL}/api/upload`,
   
   // Mailing list endpoints
-  MAILING: `${API_BASE_URL}/api/mailing-list`,
+  MAILING: `${FINAL_API_URL}/api/mailing-list`,
   
   // File serving
-  FILES: `${API_BASE_URL}`,
+  FILES: `${FINAL_API_URL}`,
   
   // Socket connection
-  SOCKET: API_BASE_URL
+  SOCKET: FINAL_API_URL
 };
 
-export default API_BASE_URL;
+export default FINAL_API_URL;
