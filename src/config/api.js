@@ -2,8 +2,9 @@
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://disaster-prep-backend.onrender.com';
 
 // Debug log to check environment variable
-console.log('API_BASE_URL:', API_BASE_URL);
-console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+console.log('🚀 API_BASE_URL:', API_BASE_URL);
+console.log('🔧 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+console.log('📅 Deployment timestamp:', new Date().toISOString());
 
 export const API_ENDPOINTS = {
   // Auth endpoints
