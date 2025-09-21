@@ -54,23 +54,33 @@ function StudentNotifications() {
     try {
       setLoading(true);
       console.log('Loading student notifications...');
-      console.log('About to call TeacherActionsService.getAssignedModules()');
-      const [modules, drills, assignments] = await Promise.all([
+      
+      // Load data with proper error handling
+      const [modulesResult, drillsResult, assignmentsResult] = await Promise.allSettled([
         TeacherActionsService.getAssignedModules(),
         TeacherActionsService.getConfirmedDrills(),
         AssignmentService.getAllAssignments()
       ]);
+      
+      // Extract data from results, with fallbacks
+      const modules = modulesResult.status === 'fulfilled' ? modulesResult.value : [];
+      const drills = drillsResult.status === 'fulfilled' ? drillsResult.value : [];
+      const assignments = assignmentsResult.status === 'fulfilled' ? assignmentsResult.value : [];
+      
       console.log('Loaded modules:', modules);
       console.log('Loaded drills:', drills);
       console.log('Loaded assignments:', assignments);
-      console.log('Setting assigned modules:', modules);
-      console.log('Setting confirmed drills:', drills);
-      console.log('Setting assignments:', assignments);
-      setAssignedModules(modules || []);
-      setConfirmedDrills(drills || []);
-      setAssignments(assignments || []);
+      
+      // Ensure we always have arrays
+      setAssignedModules(Array.isArray(modules) ? modules : []);
+      setConfirmedDrills(Array.isArray(drills) ? drills : []);
+      setAssignments(Array.isArray(assignments) ? assignments : []);
     } catch (error) {
       console.error('Error loading student notifications:', error);
+      // Set empty arrays on error
+      setAssignedModules([]);
+      setConfirmedDrills([]);
+      setAssignments([]);
     } finally {
       setLoading(false);
     }

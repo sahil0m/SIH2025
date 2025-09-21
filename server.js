@@ -546,23 +546,62 @@ app.post('/api/mailing-list/subscribe', async (req, res) => {
 });
 
 // Teacher actions routes
-app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
+app.get('/api/teacher-actions/assigned-modules', async (req, res) => {
   try {
-    const ConfirmedDrill = mongoose.model('ConfirmedDrill', new mongoose.Schema({
-      drillType: String,
-      date: String,
-      time: String,
-      venue: String,
-      teacherId: String,
-      teacherName: String,
-      createdAt: { type: Date, default: Date.now }
-    }));
-
-    const drills = await ConfirmedDrill.find().sort({ createdAt: -1 });
+    // Mock assigned modules data
+    const mockModules = [
+      {
+        _id: 'sample-1',
+        title: 'Earthquake Safety Basics',
+        description: 'Learn the fundamental safety procedures during an earthquake including the Drop, Cover, and Hold technique.',
+        dueDate: '2024-01-15',
+        estimatedTime: '15 min'
+      },
+      {
+        _id: 'sample-2',
+        title: 'Fire Evacuation Procedures',
+        description: 'Comprehensive guide on fire safety, evacuation routes, and emergency response procedures.',
+        dueDate: '2024-01-20',
+        estimatedTime: '20 min'
+      }
+    ];
 
     res.json({ 
       success: true, 
-      data: { drills }
+      data: mockModules
+    });
+
+  } catch (error) {
+    console.error('Error fetching assigned modules:', error);
+    res.status(500).json({ error: 'Failed to fetch assigned modules' });
+  }
+});
+
+app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
+  try {
+    // Mock confirmed drills data
+    const mockDrills = [
+      {
+        _id: 'drill-1',
+        title: 'Monthly Earthquake Drill',
+        description: 'Practice earthquake safety procedures including evacuation and assembly point procedures.',
+        scheduledDate: '2024-01-25',
+        scheduledTime: '10:00',
+        location: 'Main Campus'
+      },
+      {
+        _id: 'drill-2',
+        title: 'Fire Safety Drill',
+        description: 'Emergency evacuation drill to test fire safety procedures and assembly point protocols.',
+        scheduledDate: '2024-01-30',
+        scheduledTime: '14:00',
+        location: 'Science Building'
+      }
+    ];
+
+    res.json({ 
+      success: true, 
+      data: mockDrills
     });
 
   } catch (error) {
@@ -603,22 +642,29 @@ app.post('/api/teacher-actions/confirmed-drills', async (req, res) => {
 // Assignment routes
 app.get('/api/assignments', async (req, res) => {
   try {
-    const Assignment = mongoose.model('Assignment', new mongoose.Schema({
-      title: String,
-      description: String,
-      dueDate: Date,
-      pdfFile: String,
-      teacherId: String,
-      teacherName: String,
-      createdAt: { type: Date, default: Date.now },
-      status: String
-    }));
-
-    const assignments = await Assignment.find().sort({ createdAt: -1 });
+    // Mock assignments data
+    const mockAssignments = [
+      {
+        _id: 'assign-1',
+        title: 'Disaster Preparedness Research',
+        description: 'Research and write a report on disaster preparedness strategies for your region.',
+        dueDate: '2024-02-01',
+        classId: 'CS-101',
+        pdfFile: null
+      },
+      {
+        _id: 'assign-2',
+        title: 'Emergency Response Plan',
+        description: 'Create a comprehensive emergency response plan for your household.',
+        dueDate: '2024-02-05',
+        classId: 'CS-102',
+        pdfFile: '/uploads/sample-assignment.pdf'
+      }
+    ];
 
     res.json({ 
       success: true, 
-      data: { assignments }
+      data: mockAssignments
     });
 
   } catch (error) {
@@ -681,192 +727,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Statistics API routes
-app.get('/api/statistics/platform', async (req, res) => {
-  try {
-    // Mock platform statistics
-    res.json({
-      totalStudents: 150,
-      totalModulesCompleted: 450,
-      totalDrillsCompleted: 200,
-      averagePreparedness: 75
-    });
-  } catch (error) {
-    console.error('Error fetching platform statistics:', error);
-    res.status(500).json({ error: 'Failed to fetch platform statistics' });
-  }
-});
-
-app.get('/api/statistics/user/:userId', async (req, res) => {
-  try {
-    const { userId } = req.params;
-    
-    // Mock user statistics
-    res.json({
-      modulesCompleted: 5,
-      drillsCompleted: 3,
-      totalPoints: 800,
-      preparednessScore: 85
-    });
-  } catch (error) {
-    console.error('Error fetching user statistics:', error);
-    res.status(500).json({ error: 'Failed to fetch user statistics' });
-  }
-});
-
-// Alternative statistics routes without /api prefix
-app.get('/statistics/platform', async (req, res) => {
-  try {
-    res.json({
-      totalStudents: 150,
-      totalModulesCompleted: 450,
-      totalDrillsCompleted: 200,
-      averagePreparedness: 75
-    });
-  } catch (error) {
-    console.error('Error fetching platform statistics:', error);
-    res.status(500).json({ error: 'Failed to fetch platform statistics' });
-  }
-});
-
-app.get('/statistics/user/:userId', async (req, res) => {
-  try {
-    const { userId } = req.params;
-    res.json({
-      modulesCompleted: 5,
-      drillsCompleted: 3,
-      totalPoints: 800,
-      preparednessScore: 85
-    });
-  } catch (error) {
-    console.error('Error fetching user statistics:', error);
-    res.status(500).json({ error: 'Failed to fetch user statistics' });
-  }
-});
-
-// Teacher Actions API routes
-app.get('/api/teacher-actions/assigned-modules', async (req, res) => {
-  try {
-    // Mock assigned modules
-    res.json({
-      success: true,
-      data: {
-        modules: []
-      }
-    });
-  } catch (error) {
-    console.error('Error fetching assigned modules:', error);
-    res.status(500).json({ error: 'Failed to fetch assigned modules' });
-  }
-});
-
-app.get('/api/teacher-actions/confirmed-drills', async (req, res) => {
-  try {
-    // Mock confirmed drills
-    res.json({
-      success: true,
-      data: {
-        drills: []
-      }
-    });
-  } catch (error) {
-    console.error('Error fetching confirmed drills:', error);
-    res.status(500).json({ error: 'Failed to fetch confirmed drills' });
-  }
-});
-
-// Assignment API routes
-app.get('/api/assignments', async (req, res) => {
-  try {
-    // Mock assignments
-    res.json([]);
-  } catch (error) {
-    console.error('Error fetching assignments:', error);
-    res.status(500).json({ error: 'Failed to fetch assignments' });
-  }
-});
-
-// Additional missing routes
-app.get('/assigned-modules', async (req, res) => {
-  try {
-    res.json([]);
-  } catch (error) {
-    console.error('Error fetching assigned modules:', error);
-    res.status(500).json({ error: 'Failed to fetch assigned modules' });
-  }
-});
-
-app.get('/assignments', async (req, res) => {
-  try {
-    res.json([]);
-  } catch (error) {
-    console.error('Error fetching assignments:', error);
-    res.status(500).json({ error: 'Failed to fetch assignments' });
-  }
-});
-
-// Emergency alerts route
-app.get('/api/emergency-alerts', async (req, res) => {
-  try {
-    res.json({
-      success: true,
-      data: {
-        alerts: []
-      }
-    });
-  } catch (error) {
-    console.error('Error fetching emergency alerts:', error);
-    res.status(500).json({ error: 'Failed to fetch emergency alerts' });
-  }
-});
-
-// Mailing list route
-app.post('/api/mailing-list/subscribe', async (req, res) => {
-  try {
-    const { email } = req.body;
-    console.log('Email subscription request:', email);
-    res.json({ success: true, message: 'Successfully subscribed to mailing list' });
-  } catch (error) {
-    console.error('Error subscribing to mailing list:', error);
-    res.status(500).json({ error: 'Failed to subscribe to mailing list' });
-  }
-});
-
-// Drill announcements route
-app.get('/api/drill-announcements', async (req, res) => {
-  try {
-    res.json({
-      success: true,
-      data: {
-        announcements: []
-      }
-    });
-  } catch (error) {
-    console.error('Error fetching drill announcements:', error);
-    res.status(500).json({ error: 'Failed to fetch drill announcements' });
-  }
-});
-
-app.post('/api/assignments', async (req, res) => {
-  try {
-    const { title, description, dueDate, pdfFile } = req.body;
-    
-    // Mock assignment creation
-    const assignment = {
-      id: Date.now().toString(),
-      title,
-      description,
-      dueDate,
-      pdfFile,
-      createdAt: new Date().toISOString()
-    };
-    
-    res.json({ success: true, assignment });
-  } catch (error) {
-    console.error('Error creating assignment:', error);
-    res.status(500).json({ error: 'Failed to create assignment' });
-  }
-});
 
 // 404 handler - catch all unmatched routes
 app.use((req, res) => {

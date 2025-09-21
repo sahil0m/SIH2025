@@ -34,10 +34,34 @@ function Home() {
         StatisticsService.getPlatformStatistics()
       ]);
       
-      setUserStats(userData);
-      setPlatformStats(platformData);
+      // Ensure we have valid data with fallbacks
+      setUserStats(userData || {
+        modulesCompleted: 0,
+        drillsCompleted: 0,
+        totalPoints: 0,
+        preparednessScore: 0
+      });
+      setPlatformStats(platformData || {
+        totalStudents: 0,
+        totalModulesCompleted: 0,
+        totalDrillsCompleted: 0,
+        averagePreparedness: 0
+      });
     } catch (error) {
       console.error('Failed to load statistics:', error);
+      // Set fallback data on error
+      setUserStats({
+        modulesCompleted: 0,
+        drillsCompleted: 0,
+        totalPoints: 0,
+        preparednessScore: 0
+      });
+      setPlatformStats({
+        totalStudents: 0,
+        totalModulesCompleted: 0,
+        totalDrillsCompleted: 0,
+        averagePreparedness: 0
+      });
     } finally {
       setLoading(false);
     }

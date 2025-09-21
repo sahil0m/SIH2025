@@ -6,6 +6,8 @@ console.log('🚀 API_BASE_URL:', API_BASE_URL);
 console.log('🔧 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
 console.log('📅 Deployment timestamp:', new Date().toISOString());
 console.log('🔄 Force deployment:', Math.random());
+console.log('🌐 Current origin:', window.location.origin);
+console.log('🔍 All env vars:', process.env);
 
 export const API_ENDPOINTS = {
   // Auth endpoints
