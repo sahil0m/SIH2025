@@ -69,10 +69,10 @@ class TeacherActionsService {
   // Get assigned modules for students
   async getAssignedModules() {
     try {
-      console.log('Fetching assigned modules from:', `${this.baseURL}/teacher-actions/assigned-modules`);
-      const response = await this.request('/teacher-actions/assigned-modules');
+      console.log('Fetching assigned modules from:', `${this.baseURL}/assigned-modules`);
+      const response = await this.request('/assigned-modules');
       console.log('Assigned modules response:', response);
-      return response.data?.modules || [];
+      return response.data || [];
     } catch (error) {
       console.error('Failed to fetch assigned modules:', error);
       // Return sample data for testing
@@ -135,10 +135,10 @@ class TeacherActionsService {
   // Get confirmed drills for students
   async getConfirmedDrills() {
     try {
-      console.log('Fetching confirmed drills from:', `${this.baseURL}/teacher-actions/confirmed-drills`);
-      const response = await this.request('/teacher-actions/confirmed-drills');
+      console.log('Fetching confirmed drills from:', `${this.baseURL}/confirmed-drills`);
+      const response = await this.request('/confirmed-drills');
       console.log('Confirmed drills response:', response);
-      return response.data?.drills || [];
+      return response.data || [];
     } catch (error) {
       console.error('Failed to fetch confirmed drills:', error);
       // Return sample data for testing
