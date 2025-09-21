@@ -102,7 +102,12 @@ app.get('/', (req, res) => {
       'GET /api/points/user/:userId - Get user points',
       'GET /api/leaderboard - Get leaderboard',
       'GET /api/drill-announcements - Get drill announcements',
-      'GET /api/emergency-alerts - Get emergency alerts'
+      'GET /api/emergency-alerts - Get emergency alerts',
+      'GET /api/teacher-actions/assigned-modules - Get assigned modules',
+      'GET /api/teacher-actions/confirmed-drills - Get confirmed drills',
+      'GET /api/statistics/platform - Get platform statistics',
+      'GET /api/statistics/user/:userId - Get user statistics',
+      'GET /api/assignments - Get assignments'
     ]
   });
 });
