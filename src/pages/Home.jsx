@@ -104,22 +104,22 @@ function Home() {
                 <div className="d-flex align-items-center gap-2">
                   <i className="bi bi-people text-primary"></i>
                   <span className="small text-muted">Students onboarded</span>
-                  <span className="fw-semibold">{platformStats.totalStudents.toLocaleString()}</span>
+                  <span className="fw-semibold">{(platformStats?.totalStudents || 0).toLocaleString()}</span>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                   <i className="bi bi-film text-danger"></i>
                   <span className="small text-muted">Modules completed</span>
-                  <span className="fw-semibold">{userStats.modulesCompleted.toLocaleString()}</span>
+                  <span className="fw-semibold">{(userStats?.modulesCompleted || 0).toLocaleString()}</span>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                   <i className="bi bi-flag text-success"></i>
                   <span className="small text-muted">Drill recorded</span>
-                  <span className="fw-semibold">{userStats.drillsCompleted.toLocaleString()}</span>
+                  <span className="fw-semibold">{(userStats?.drillsCompleted || 0).toLocaleString()}</span>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                   <i className="bi bi-shield-check text-warning"></i>
                   <span className="small text-muted">Avg preparedness</span>
-                  <span className="fw-semibold">{userStats.preparednessScore}%</span>
+                  <span className="fw-semibold">{userStats?.preparednessScore || 0}%</span>
                 </div>
               </>
             )}

@@ -790,6 +790,33 @@ app.get('/assignments', async (req, res) => {
   }
 });
 
+// Emergency alerts route
+app.get('/api/emergency-alerts', async (req, res) => {
+  try {
+    res.json({
+      success: true,
+      data: {
+        alerts: []
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching emergency alerts:', error);
+    res.status(500).json({ error: 'Failed to fetch emergency alerts' });
+  }
+});
+
+// Mailing list route
+app.post('/api/mailing-list/subscribe', async (req, res) => {
+  try {
+    const { email } = req.body;
+    console.log('Email subscription request:', email);
+    res.json({ success: true, message: 'Successfully subscribed to mailing list' });
+  } catch (error) {
+    console.error('Error subscribing to mailing list:', error);
+    res.status(500).json({ error: 'Failed to subscribe to mailing list' });
+  }
+});
+
 // Drill announcements route
 app.get('/api/drill-announcements', async (req, res) => {
   try {
