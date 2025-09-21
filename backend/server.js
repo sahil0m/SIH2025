@@ -9,6 +9,14 @@ const fs = require('fs');
 // Email functionality removed - only storing emails in database
 require('dotenv').config();
 
+// Define allowed origins consistently
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5000", 
+  "http://localhost:5001",
+  "https://sih-2025.vercel.app"
+];
+
 const app = express();
 const server = createServer(app);
 
@@ -19,10 +27,12 @@ const io = new Server(server, {
       "http://localhost:3000",
       "http://localhost:5000",
       "http://localhost:5001",
-      "https://sih-2025.vercel.app" // Only allow your deployed Vercel frontend
+      "https://sih-2025.vercel.app",
+      "https://sih-2025-hm4z6k9fd-sahil-dewanis-projects.vercel.app"
     ],
-    methods: ["GET", "POST"],
-    credentials: true
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
   }
 });
 
@@ -32,9 +42,12 @@ app.use(cors({
     'http://localhost:3000',
     'http://localhost:5000',
     'http://localhost:5001',
-    'https://sih-2025.vercel.app' // Only allow your deployed Vercel frontend
+    'https://sih-2025.vercel.app',
+    'https://sih-2025-hm4z6k9fd-sahil-dewanis-projects.vercel.app'
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(express.json());
 

@@ -22,7 +22,9 @@ const io = new Server(server, {
       "https://sih-2025.vercel.app",
       "https://sih-2025-hm4z6k9fd-sahil-dewanis-projects.vercel.app"
     ],
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
   }
 });
 

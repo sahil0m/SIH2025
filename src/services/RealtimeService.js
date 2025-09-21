@@ -9,7 +9,20 @@ class RealtimeService {
 
   connect() {
     if (!this.socket) {
-      this.socket = io(API_ENDPOINTS.SOCKET);
+      this.socket = io(API_ENDPOINTS.SOCKET, {
+        withCredentials: true,
+        transports: ['websocket', 'polling'],
+        cors: {
+          origin: [
+            "http://localhost:3000",
+            "http://localhost:5001", 
+            "https://*.vercel.app",
+            "https://sih-2025.vercel.app",
+            "https://sih-2025-hm4z6k9fd-sahil-dewanis-projects.vercel.app"
+          ],
+          credentials: true
+        }
+      });
       
       this.socket.on('connect', () => {
         console.log('✅ Connected to real-time server');
@@ -19,6 +32,10 @@ class RealtimeService {
       this.socket.on('disconnect', () => {
         console.log('❌ Disconnected from real-time server');
         this.isConnected = false;
+      });
+
+      this.socket.on('connect_error', (error) => {
+        console.error('❌ Socket connection error:', error);
       });
     }
     return this.socket;
